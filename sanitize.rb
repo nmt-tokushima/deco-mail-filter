@@ -14,7 +14,7 @@ Syslog.open("DECO_MF", LOG_PID|LOG_NDELAY, LOG_MAIL) unless Syslog.opened?
 Syslog.info("start")
 Syslog.info("RCPT TO: [#{ARGV[0].chop}]")
 
-mail = MailParser::Message.new(STDIN.read)
+mail = MailParser::Message.new($stdin.read)
 
 Syslog.info("From: #{mail.from}")
 
