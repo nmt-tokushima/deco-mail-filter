@@ -21,6 +21,30 @@ RSpec.describe "sanitize" do
   test_address = 'test@example.com'
   test_address_2 = 'test2@example.com'
 
+  describe "\"x-mail-filter\" header" do
+    subject { MailParser::Message.new(mail).header.raw('x-mail-filter')&.map(&:chomp) }
+
+    let(:stdin_str) do
+      <<~EOF
+      To: #{test_address}
+      Subject: Test subject
+      Content-type: text/plain
+      
+      Test body
+      EOF
+    end
+
+    describe "Original mail does not have it" do
+      let(:mail) { stdin_str }
+      it { is_expected.to be_nil }
+    end
+
+    describe "Filtered mail has it" do
+      let(:mail) { @stdout_string }
+      it { is_expected.to eq ["DECO Mail Filter"] }
+    end
+  end
+
   describe "To address" do
     subject { MailParser::Message.new(@stdout_string).header.raw('to').map(&:chomp) }
 
