@@ -73,7 +73,7 @@ RSpec.describe "sanitize" do
         EOF
       end
 
-      it { is_expected.to eq [DUMMY_MAIL_TO] }
+      it { is_expected.to eq [DecoMailFilter::DUMMY_MAIL_TO] }
     end
 
     describe "1 To address and 1 CC address change to 1 dummy address" do
@@ -88,7 +88,7 @@ RSpec.describe "sanitize" do
         EOF
       end
 
-      it { is_expected.to eq [DUMMY_MAIL_TO] }
+      it { is_expected.to eq [DecoMailFilter::DUMMY_MAIL_TO] }
     end
   end
 
