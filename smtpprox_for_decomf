@@ -1,0 +1,238 @@
+#!/usr/bin/perl
+# had a -w on it before
+#
+#   This code is Copyright (C) 2001 Morgan Stanley Dean Witter, and
+#   is distributed according to the terms of the GNU Public License
+#   as found at <URL:http://www.fsf.org/copyleft/gpl.html>.
+#
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+# Written by Bennett Todd <bet@rahul.net>
+#
+# Modified by Keisuke Akiyama <kakiyama@nmt.co.jp> :
+#
+# - Changed relay DECO MailFilter
+#
+
+#use strict;
+use Getopt::Long;
+use IO::File;
+use Sys::Syslog;
+use Data::UUID;
+use Fcntl;
+use lib '/usr/local/deco_mail_filter/s/lib/';
+use MSDW::SMTP::Server;
+use MSDW::SMTP::Client;
+
+$tmpfile = "";
+
+my $DECO_MAIL_FILTER_DIR = '/usr/local/deco_mail_filter/s';
+my $SANITIZER = "$DECO_MAIL_FILTER_DIR/sanitize.rb";
+my $PIDFILE = "$DECO_MAIL_FILTER_DIR/tmp/smtpprox_for_decomf.pid"; # PID File
+
+=head1 NAME
+
+  smtprox -- Transparent SMTP proxy
+
+=head1 SYNOPSIS
+
+  smtpprox [options] listen.addr:port talk.addr:port
+    options:
+      --children=16
+      --minperchild=100
+      --maxperchild=200
+      --debugtrace=filename_prefix
+
+=head1 DESCRIPTION
+
+smtpprox listens on the addr and port specified by its first arg,
+and sends the traffic unmodified to the SMTP server whose addr and
+port are listed as its second arg. The SMTP dialogue is propogated
+literally, all commands from the client are copied to the server and
+the responses from the server are copied back from to the client,
+but the envelope info and message bodies are captured for analysis,
+and code has the option of modifying the body before sending it on,
+manipulating the envelope, or intervening in the SMTP dialogue to
+reject senders, recipients, or content at the SMTP level. The
+children option, defaulting to 16, allows adjusting how many child
+processes will be maintained in the service pool. Each child will
+kill itself after servicing some random number of messages between
+minperchild and maxperchild (100-200 default), after which the
+parent will immediately fork another child to pick up its share of
+the load. If debugtrace is specified, the prefix will have the PID
+appended to it for a separate logfile for each child, which will
+capture all the SMTP dialogues that child services. It looks like a
+snooper on the client side of the proxy. And if debugtracefile is
+defined, it returns its own banner including its PID for debugging
+at startup, otherwise it copies the server's banner back to the
+client transparently.
+
+=head1 SENDER/RECIPIENT FILTERING
+
+This version of smtpprox has been modified to reject all mail
+submitted by a particular local user (variable $uid in the script)
+which is NOT sent to a particular address (variable $rec in the 
+script. I.e. said user is limited to send mail to that one particular
+address only.
+
+=head1 EXAMPLE
+
+interactive:	smtpprox 127.0.0.1:10025 127.0.0.1:10026
+
+deamon: 	setsid smtpprox 127.0.0.1:10025 127.0.0.1:10026 </dev/null >/dev/null 2>&1
+
+
+=head1 WARNING
+
+While the richness or lack thereof in the SMTP dialect spoken lies
+in the hands of the next SMTP server down the chain, this proxy was
+not designed to run on the front lines listening for traffic from
+the internet; neither its performance characteristics nor its
+paranoia were tuned for that role. Rather, it's designed as an
+intermediate component, suitable for use as the framework for a
+content-scanning proxy for use with Postfix's content-filtering
+hooks.
+
+=head1 PERFORMANCE NOTES
+
+This proxy is tuned to some specific assumptions: execing perl is
+wickedly expensive, forking perl is fairly expensive, messages will
+vary rather widely in size, and memory footprint efficiency is
+somewhat more important than CPU utilization. It uses Apache-style
+preforking to almost entirely eliminate the need to fork perls,
+with controlled child restart to defend against resource leaks in
+children; it stores the body of the message in an unlinked file
+under /tmp, which should be a tmpfs; this prevents the allocation
+overhead associated with large strings (often 2-3x) and ensures that
+space will be returned to the OS as soon as it's not needed.
+
+=cut
+
+my $syntax = "syntax: $0 [--children=16] [--minperchild=100] ".
+             "[--maxperchild=200] [--debugtrace=undef] ".
+             "listen.addr:port talk.addr:port\n";
+
+my $children = 16;
+my $minperchild = 100;
+my $maxperchild = 200;
+my $debugtrace  = undef;
+
+GetOptions("children=n" => \$children,
+	   "minperchild=n" => \$minperchild,
+	   "maxperchild=n" => \$maxperchild,
+	   "debugtrace=s" => \$debugtrace) or die $syntax;
+
+die $syntax unless @ARGV == 2;
+my ($srcaddr, $srcport) = split /:/, $ARGV[0];
+my ($dstaddr, $dstport) = split /:/, $ARGV[1];
+die $syntax unless defined($srcport) and defined($dstport);
+
+my $server = MSDW::SMTP::Server->new(interface => $srcaddr, port => $srcport);
+
+# This should allow a kill on the parent to also blow away the
+# children, I hope
+my %children;
+my $printed_pid = 0;
+use vars qw($please_die);
+$please_die = 0;
+$SIG{TERM} = sub { $please_die = 1; };
+
+# This block is the parent daemon, never does an accept, just herds
+# a pool of children who accept and service connections, and
+# occasionally kill themselves off
+PARENT: while (1) {
+    if ($printed_pid == 0)
+    {
+        $printed_pid = 1;
+        open (OUT, ">$PIDFILE");
+        print OUT "$$";
+        close (OUT);
+    }
+    while (scalar(keys %children) >= $children) {
+	my $child = wait;
+	delete $children{$child} if exists $children{$child};
+	if ($please_die) { kill 15, keys %children; exit 0; }
+    }
+    my $pid = fork;
+    die "$0: fork failed: $!\n" unless defined $pid;
+    last PARENT if $pid == 0;
+    $children{$pid} = 1;
+    select(undef, undef, undef, 0.1);
+    if ($please_die) { kill 15, keys %children; exit 0; }
+}
+
+# This block is a child service daemon. It inherited the bound
+# socket created by SMTP::Server->new, it will service a random
+# number of connection requests in [minperchild..maxperchild] then
+# exit
+
+my $lives = $minperchild + (rand($maxperchild - $minperchild));
+my %opts;
+$rcpt = "";
+
+sub relay_decomf($$)
+{
+  my ($to_ref, $fh)  = @_;
+  my $result = 0;
+  my $num = 0;
+  my $outfile = $$."_out";
+
+  $uuid = Data::UUID->new;
+  $tmpfile = "$DECO_MAIL_FILTER_DIR/tmp/".$uuid->create_str();
+
+  open (TMPOUT, "> $tmpfile");
+
+  # envelope To の確保
+  if (defined($to_ref)) {
+    my @to = @$to_ref;
+    $num   = scalar @to;
+
+    foreach my $tor (0..$#to) {
+      if($to[$tor] =~ /(.+)(ORCPT=rfc822;)(.+)/) {
+        $rcpt .= "$3,";
+      }
+    }
+  }
+
+  while (<$fh>) {
+    print TMPOUT "$_"
+  }
+  close(TMPOUT);
+}
+
+if (defined $debugtrace) {
+	$opts{debug} = IO::File->new(">$debugtrace.$$");
+	$opts{debug}->autoflush(1);
+}
+
+while (1) {
+    $server->accept(%opts);
+    my $client = MSDW::SMTP::Client->new(interface => $dstaddr, port => $dstport);
+    my $banner = $client->hear;
+    $banner = "220 $debugtrace.$$" if defined $debugtrace;
+    $server->ok($banner);
+
+    #print $server->{data};
+    while (my $what = $server->chat) {
+	if ($what eq '.') {
+	    relay_decomf($server->{to}, $server->{data});
+            $server->{data}->seek(0,0);
+            open(COM, "cat $tmpfile | $SANITIZER '$rcpt' |");
+            $client->yammer(*COM);
+            close(COM);
+            unlink($tmpfile);
+	} else {
+	    $client->say($what);
+	}
+	$server->ok($client->hear);
+    }
+
+    $client = undef;
+    delete $server->{"s"};
+    exit 0;
+}
+
