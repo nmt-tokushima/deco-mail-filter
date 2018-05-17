@@ -10,7 +10,7 @@ Syslog.info("RCPT TO: [#{ARGV[0].chop}]")
 class DecoMailFilter
   DUMMY_MAIL_TO = 'bcc@deco-project.org'
 
-  def self.work(input)
+  def work input
     mail = MailParser::Message.new(input)
 
     Syslog.info("From: #{mail.from}")
@@ -51,5 +51,5 @@ class DecoMailFilter
     output += mail.rawbody
     Syslog.info("end")
     output
-  end # work method end
+  end
 end

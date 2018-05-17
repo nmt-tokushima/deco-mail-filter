@@ -5,4 +5,4 @@
 
 require_relative 'core'
 
-print DecoMailFilter.work $stdin.read
+print DecoMailFilter.new.work $stdin.read

@@ -5,7 +5,7 @@ RSpec.describe "DecoMailFilter" do
   test_address = 'test@example.com'
   test_address_2 = 'test2@example.com'
 
-  let(:mail_after) { DecoMailFilter.work mail_before }
+  let(:mail_after) { DecoMailFilter.new.work mail_before }
 
   describe "\"x-mail-filter\" header" do
     subject { MailParser::Message.new(mail).header.raw('x-mail-filter')&.map(&:chomp) }
