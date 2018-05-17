@@ -1,4 +1,5 @@
 /tmp/
 !/tmp/.keep
 
+/.bundle
 /vendor/bundle
