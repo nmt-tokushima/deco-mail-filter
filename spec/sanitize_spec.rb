@@ -1,5 +1,4 @@
-require 'rspec'
-require_relative 'core'
+require 'spec_helper'
 
 RSpec.describe "DecoMailFilter" do
   test_address = '<test@example.com>'
