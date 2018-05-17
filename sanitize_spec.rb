@@ -2,8 +2,8 @@ require 'rspec'
 require_relative 'core'
 
 RSpec.describe "DecoMailFilter" do
-  test_address = 'test@example.com'
-  test_address_2 = 'test2@example.com'
+  test_address = '<test@example.com>'
+  test_address_2 = '<test2@example.com>'
 
   let(:mail_after) { DecoMailFilter.new.work mail_before }
 
