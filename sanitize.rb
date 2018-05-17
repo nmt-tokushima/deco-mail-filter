@@ -13,6 +13,6 @@ Syslog.info("RCPT TO: [#{ARGV[0].chop}]")
 
 require_relative 'core'
 
-filter = DecoMailFilter.new
+filter = DecoMailFilter.new bcc_conversion = (ENV['DECO_MF_BCC_CONVERSION'] == '1')
 filter.logger = Syslog
 print filter.work $stdin.read
