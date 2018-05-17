@@ -5,6 +5,7 @@ GEM
     mailparser (0.5.8)
       mmapscanner (~> 0.3)
     mmapscanner (0.3.9)
+    null-logger (0.1.5)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -24,6 +25,7 @@ PLATFORMS
 
 DEPENDENCIES
   mailparser (= 0.5.8)
+  null-logger (= 0.1.5)
   rspec (~> 3.7)
 
 BUNDLED WITH
