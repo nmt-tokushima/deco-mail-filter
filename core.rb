@@ -10,6 +10,10 @@ Syslog.info("RCPT TO: [#{ARGV[0].chop}]")
 class DecoMailFilter
   DUMMY_MAIL_TO = 'bcc@deco-project.org'
 
+  def initialize bcc_conversion = true
+    @bcc_conversion = bcc_conversion
+  end
+
   def work input
     mail = MailParser::Message.new(input)
 
@@ -24,6 +28,13 @@ class DecoMailFilter
     flag_cc = false
     flag_cc = true if mail.cc.size >= 1
     Syslog.info("Cc size: #{mail.cc.size}")
+
+    # BCC変換が無効の場合
+    # 宛先ドメインが全て同じであることの確認
+    if !@bcc_conversion && (mail.to.map(&:domain) + mail.cc.map(&:domain)).uniq.size == 1
+      flag_to = false
+      flag_cc = false
+    end
 
     # mail出力
     output = ''
