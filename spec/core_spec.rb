@@ -1,10 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe "DecoMailFilter" do
+RSpec.describe "DecoMailFilter::Core" do
   test_address = '<test@example.com>'
   test_address_2 = '<test2@example.com>'
 
-  let(:filter) { DecoMailFilter.new }
+  let(:config) { DecoMailFilter::Config.new }
+  # let(:filter) { DecoMailFilter::Core.new config = config } # ??? config becomes nil
+  let(:filter) { DecoMailFilter::Core.new config }
+
   let(:mail_after) { filter.work mail_before }
 
   describe "\"x-mail-filter\" header" do
@@ -94,9 +97,9 @@ RSpec.describe "DecoMailFilter" do
   end
 
   describe "To and Cc Addresses when BCC conversion is disabled" do
-    subject { MailParser::Message.new(mail_after).to.map(&:to_s) }
+    let(:config) { DecoMailFilter::Config.new bcc_conversion = false }
 
-    let(:filter) { DecoMailFilter.new bcc_conversion = false }
+    subject { MailParser::Message.new(mail_after).to.map(&:to_s) }
 
     context "2 To addresses" do
       let(:mail_before) do
@@ -144,5 +147,8 @@ RSpec.describe "DecoMailFilter" do
       it { is_expected.to include test_address }
       it { expect(MailParser::Message.new(mail_after).cc).to eq [] }
     end
+  end
+
+  describe 'Encrypt attachments' do
   end
 end
