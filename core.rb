@@ -17,6 +17,18 @@ module DecoMailFilter
       @logger ||= NullLogger.new
     end
 
+    def have_attachment? mail
+      if mail.multipart?
+        if mail.header['content-type'].first.tap { |e| break e.type, e.subtype } == ['multipart', 'mixed']
+          true
+        else
+          false
+        end
+      else
+        false
+      end
+    end
+
     def work input
       mail = MailParser::Message.new(input)
 
