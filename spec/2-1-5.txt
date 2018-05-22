@@ -1,0 +1,46 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 2D762227B385
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: 2-1-5
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-ID: <086001d3f199$06a19760$13e4c620$@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0861_01D3F1E4.76896670"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdPxmPwL3dIxOpc9QM+vbpUFPPDGFw==
+Content-Language: ja
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0861_01D3F1E4.76896670
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+test
+
+------=_NextPart_000_0861_01D3F1E4.76896670
+Content-Type: text/plain;
+	name="test.txt"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="test.txt"
+
+test=0A=
+
+------=_NextPart_000_0861_01D3F1E4.76896670
+Content-Type: application/x-zip-compressed;
+	name="test.zip"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="test.zip"
+
+UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G/VrtBv1adXgLAAEE
+6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5OwUAAAAFAAAACAAYAAAAAAABAAAApIEA
+AAAAdGVzdC50eHRVVAUAA+0G/Vp1eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBOAAAARwAAAAAA
+
+------=_NextPart_000_0861_01D3F1E4.76896670--
+

@@ -1,0 +1,83 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 9D81B227B375
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: 2-2-4
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-ID: <08c901d3f1a0$eae6c510$c0b44f30$@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_08CA_01D3F1EC.5ACEBB30"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdPxoNi5bdQ3JJfAS+S4EvvJfaDDmA==
+Content-Language: ja
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_08CA_01D3F1EC.5ACEBB30
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_08CB_01D3F1EC.5ACEBB30"
+
+
+------=_NextPart_001_08CB_01D3F1EC.5ACEBB30
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+test 
+
+------=_NextPart_001_08CB_01D3F1EC.5ACEBB30
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
+16.0.9226.2126">
+<TITLE>2-2-4</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/rtf format -->
+
+<P DIR=3DLTR ALIGN=3DJUSTIFY><SPAN LANG=3D"en-us"><B></B></SPAN><SPAN =
+LANG=3D"en-us"><B><FONT =
+FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">t</FONT></B></SPAN><SPA=
+N LANG=3D"en-us"><B></B></SPAN><SPAN LANG=3D"en-us"><B><FONT =
+FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">est</FONT></B></SPAN><S=
+PAN LANG=3D"en-us"></SPAN><SPAN LANG=3D"en-us"><B></B></SPAN><B><SPAN =
+LANG=3D"en-us"><FONT FACE=3D"MS PGothic" SIZE=3D2 COLOR=3D"#000000"> =
+&lt;&lt;...&gt;&gt; </FONT></SPAN></B><SPAN =
+LANG=3D"en-us"><B></B></SPAN><SPAN LANG=3D"en-us"><B></B></SPAN><B><SPAN =
+LANG=3D"en-us"></SPAN></B><SPAN LANG=3D"en-us"><B></B></SPAN><SPAN =
+LANG=3D"en-us"><B></B></SPAN></P>
+
+</BODY>
+</HTML>
+------=_NextPart_001_08CB_01D3F1EC.5ACEBB30--
+
+------=_NextPart_000_08CA_01D3F1EC.5ACEBB30
+Content-Type: text/html;
+	name="test.html"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="test.html"
+
+<!DOCTYPE html>=0A=
+<html lang=3D"en">=0A=
+<head>=0A=
+  <meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8">=0A=
+  <title>test</title>=0A=
+</head>=0A=
+<body>=0A=
+  test=0A=
+</body>=0A=
+</html>=0A=
+
+------=_NextPart_000_08CA_01D3F1EC.5ACEBB30--
+

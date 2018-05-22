@@ -1,0 +1,35 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 739E7227B376
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+To: test@example.com
+From: dummysender <dummysender@example.com>
+Subject: 1-1-4
+Message-ID: <18dc4e2b-4419-fb22-eb94-0b7981e1e6cc@example.com>
+Date: Mon, 21 May 2018 12:34:56 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="------------3445794B7E8CB20943CE4499"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------3445794B7E8CB20943CE4499
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+test
+
+
+--------------3445794B7E8CB20943CE4499
+Content-Type: text/html; charset=UTF-8;
+ name="test.html"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="test.html"
+
+PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgaHR0cC1l
+cXVpdj0iY29udGVudC10eXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgi
+PgogIDx0aXRsZT50ZXN0PC90aXRsZT4KPC9oZWFkPgo8Ym9keT4KICB0ZXN0CjwvYm9keT4K
+PC9odG1sPgo=
+--------------3445794B7E8CB20943CE4499--

@@ -1,0 +1,45 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 0DAA2227B385
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: 2-1-8
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-ID: <087e01d3f199$6be18b30$43a4a190$@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_087F_01D3F1E4.DBC98150"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdPxmVYTCGmElCE0Q3a39StNFcGRDw==
+Content-Language: ja
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_087F_01D3F1E4.DBC98150
+Content-Type: text/plain;
+	charset="iso-2022-jp"
+Content-Transfer-Encoding: 7bit
+
+test
+
+------=_NextPart_000_087F_01D3F1E4.DBC98150
+Content-Type: text/html;
+	name="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLmh0bWw=?="
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLmh0bWw=?="
+
+<!DOCTYPE html>=0A=
+<html lang=3D"en">=0A=
+<head>=0A=
+  <meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8">=0A=
+  <title>test</title>=0A=
+</head>=0A=
+<body>=0A=
+  test=0A=
+</body>=0A=
+</html>=0A=
+
+------=_NextPart_000_087F_01D3F1E4.DBC98150--
+

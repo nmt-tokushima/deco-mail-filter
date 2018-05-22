@@ -1,0 +1,63 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 8E84620F9A73
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+Date: Mon, 21 May 2018 12:34:56 +0900
+From: =?ISO-2022-JP?B?GyRCJEckMz5QJGAlKCVVGyhC?= <dummysender@example.com>
+To: test@example.com
+Message-ID: <5b03d1487a958_75d52acef6cd9f0c3805d@example.com.mail>
+Subject: 3-2-13
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="--==_mimepart_5b03d14878841_75d52acef6cd9f0c3794a"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Joruri Mail ver. 2.1.3
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36
+ (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+
+
+----==_mimepart_5b03d14878841_75d52acef6cd9f0c3794a
+Content-Type: text/plain;
+ name="=?ISO-2022-JP?B?GyRCJUYlOSVIGyhCLnR4dA==?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="=?ISO-2022-JP?B?GyRCJUYlOSVIGyhCLnR4dA==?="
+Content-ID: <5b03d1487ae9b_75d52acef6cd9f0c381f2@example.com.mail>
+
+dGVzdAo=
+
+----==_mimepart_5b03d14878841_75d52acef6cd9f0c3794a
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b03d14878401_75d52acef6cd9f0c3781d"
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b03d14878401_75d52acef6cd9f0c3781d
+Content-Type: text/plain;
+ charset=ISO-2022-JP
+Content-Transfer-Encoding: 7bit
+
+test
+
+
+----==_mimepart_5b03d14878401_75d52acef6cd9f0c3781d
+Content-Type: text/html;
+ charset=ISO-2022-JP
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><meta http-equiv="content-type" content="text/html; charset=ISO-2022-JP"></head><body><p style="margin: 0px; padding: 0px;"><strong>test</strong></p></body></html>
+----==_mimepart_5b03d14878401_75d52acef6cd9f0c3781d--
+
+----==_mimepart_5b03d14878841_75d52acef6cd9f0c3794a
+Content-Type: application/zip;
+ name="=?ISO-2022-JP?B?GyRCJUYlOSVIGyhCLnppcA==?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="=?ISO-2022-JP?B?GyRCJUYlOSVIGyhCLnppcA==?="
+Content-ID: <5b03d1487b87a_75d52acef6cd9f0c38293@example.com.mail>
+
+UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G
+/VrtBv1adXgLAAEE6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5
+OwUAAAAFAAAACAAYAAAAAAABAAAApIEAAAAAdGVzdC50eHRVVAUAA+0G/Vp1
+eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBOAAAARwAAAAAA
+
+----==_mimepart_5b03d14878841_75d52acef6cd9f0c3794a--

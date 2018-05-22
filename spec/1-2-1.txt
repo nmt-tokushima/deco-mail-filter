@@ -1,0 +1,39 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 740E2227B379
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+To: test@example.com
+From: dummysender <dummysender@example.com>
+Subject: 1-2-1
+Message-ID: <3d018fad-7bac-ceed-acbf-e930c3f27999@example.com>
+Date: Mon, 21 May 2018 12:34:56 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------E2E0AC9934ABBB9D7853FDC0"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------E2E0AC9934ABBB9D7853FDC0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+*bold*
+
+
+--------------E2E0AC9934ABBB9D7853FDC0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><b>bold</b><br>
+    </p>
+  </body>
+</html>
+
+--------------E2E0AC9934ABBB9D7853FDC0--

@@ -1,0 +1,65 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 30274227B379
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+To: test@example.com
+From: dummysender <dummysender@example.com>
+Subject: 1-2-5
+Message-ID: <6f56c730-0e94-e532-5801-5fa3e12f3953@example.com>
+Date: Mon, 21 May 2018 12:34:56 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="------------8931EDB51441E34B30CFA130"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------8931EDB51441E34B30CFA130
+Content-Type: multipart/alternative;
+ boundary="------------26061FA438EA06EE14ABADDE"
+
+
+--------------26061FA438EA06EE14ABADDE
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+*bold*
+
+
+--------------26061FA438EA06EE14ABADDE
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><b>bold</b><br>
+    </p>
+  </body>
+</html>
+
+--------------26061FA438EA06EE14ABADDE--
+
+--------------8931EDB51441E34B30CFA130
+Content-Type: text/plain; charset=UTF-8;
+ name="test.txt"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="test.txt"
+
+dGVzdAo=
+--------------8931EDB51441E34B30CFA130
+Content-Type: application/zip;
+ name="test.zip"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="test.zip"
+
+UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G/VrtBv1adXgL
+AAEE6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5OwUAAAAFAAAACAAYAAAAAAAB
+AAAApIEAAAAAdGVzdC50eHRVVAUAA+0G/Vp1eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBO
+AAAARwAAAAAA
+--------------8931EDB51441E34B30CFA130--

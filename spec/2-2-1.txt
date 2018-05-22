@@ -1,0 +1,51 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id A01E3227B375
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: 2-2-1
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-ID: <08a601d3f1a0$10288a30$30799e90$@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_08A7_01D3F1EB.80116AB0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdPxn/3WnEwOM2aZSC2Fioy+M7Offg==
+Content-Language: ja
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_08A7_01D3F1EB.80116AB0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+test
+
+------=_NextPart_000_08A7_01D3F1EB.80116AB0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
+16.0.9226.2126">
+<TITLE>2-2-1</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/rtf format -->
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"><B><FONT =
+FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">t</FONT></B></SPAN><SPA=
+N LANG=3D"en-us"><B><FONT =
+FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">est</FONT></B></SPAN><S=
+PAN LANG=3D"en-us"><B></B></SPAN></P>
+
+</BODY>
+</HTML>
+------=_NextPart_000_08A7_01D3F1EB.80116AB0--
+

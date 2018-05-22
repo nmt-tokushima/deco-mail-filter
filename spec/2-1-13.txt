@@ -1,0 +1,46 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id BE04C227B385
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: 2-1-9
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-ID: <088801d3f199$80940170$81bc0450$@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0889_01D3F1E4.F07BD080"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdPxmXFj5L6lzaQgTTCzfUvxEBbqqw==
+Content-Language: ja
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0889_01D3F1E4.F07BD080
+Content-Type: text/plain;
+	charset="iso-2022-jp"
+Content-Transfer-Encoding: 7bit
+
+test
+
+------=_NextPart_000_0889_01D3F1E4.F07BD080
+Content-Type: text/plain;
+	name="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLnR4dA==?="
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLnR4dA==?="
+
+test=0A=
+
+------=_NextPart_000_0889_01D3F1E4.F07BD080
+Content-Type: application/x-zip-compressed;
+	name="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLnppcA==?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLnppcA==?="
+
+UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G/VrtBv1adXgLAAEE
+6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5OwUAAAAFAAAACAAYAAAAAAABAAAApIEA
+AAAAdGVzdC50eHRVVAUAA+0G/Vp1eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBOAAAARwAAAAAA
+
+------=_NextPart_000_0889_01D3F1E4.F07BD080--
+
