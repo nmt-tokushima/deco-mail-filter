@@ -6,12 +6,10 @@
 
 ```sh
 bundle install
+rake
 # or
 bundle install --path vendor/bundle
-```
-
-```sh
-bundle exec rspec
+bundle exec rake
 ```
 
 ## License
