@@ -1,5 +1,7 @@
 # DECO Mail Filter
 
+[![Build Status](https://travis-ci.org/nmt-tokushima/deco-mail-filter.svg?branch=master)](https://travis-ci.org/nmt-tokushima/deco-mail-filter)
+
 ## Test
 
 ```sh
