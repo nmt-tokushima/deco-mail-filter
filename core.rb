@@ -1,5 +1,7 @@
 require 'mailparser'
 require 'null_logger'
+require 'nkf'
+require 'base64'
 require_relative 'config'
 
 module DecoMailFilter
@@ -26,6 +28,16 @@ module DecoMailFilter
         end
       else
         false
+      end
+    end
+
+    def write_attachments mail, dir
+      return unless have_attachment? mail
+      mail.part[1..-1].each do |e|
+        filename = NKF.nkf '-w', e.filename
+        File.open(File.join(dir, filename), 'wb') do |f|
+          f.write Base64.decode64 e.rawbody
+        end
       end
     end
 
