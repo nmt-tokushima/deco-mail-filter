@@ -209,4 +209,47 @@ RSpec.describe "DecoMailFilter::Core" do
       context { let(:xyz) { '3-2-13' }; it { is_expected.to eq true } }
     end
   end
+
+  describe "#write_attachments" do
+    before do
+      @dir = Dir.mktmpdir
+      DecoMailFilter::Core.new.write_attachments mail, @dir
+    end
+    after { FileUtils.rm_rf @dir }
+
+    describe "file existence" do
+      subject { File.exist? File.join @dir, filename }
+
+      context "test.zip" do
+        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-2.txt")) }
+        let(:filename) { "test.zip" }
+        it { is_expected.to eq true }
+      end
+
+      context "テスト.zip" do
+        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-10.txt")) }
+        let(:filename) { "テスト.zip" }
+        it { is_expected.to eq true }
+      end
+    end
+
+    describe "file body" do
+      before do
+        @body = File.open(File.join(@dir, filename), 'rb') { |f| break f.read }
+        @orig = Base64.decode64(mail.part[1].rawbody)
+      end
+
+      context "test.zip" do
+        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-2.txt")) }
+        let(:filename) { "test.zip" }
+        it { expect(@body).to eq @orig }
+      end
+
+      context "テスト.zip" do
+        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-10.txt")) }
+        let(:filename) { "テスト.zip" }
+        it { expect(@body).to eq @orig }
+      end
+    end
+  end
 end

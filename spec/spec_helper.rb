@@ -100,4 +100,5 @@ RSpec.configure do |config|
 end
 
 require 'pry'
+require 'tmpdir'
 require_relative '../core'
