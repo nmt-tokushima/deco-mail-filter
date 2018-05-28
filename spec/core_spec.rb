@@ -252,4 +252,48 @@ RSpec.describe "DecoMailFilter::Core" do
       end
     end
   end
+
+  describe "#make_zip_file" do
+    before do
+      @filedir = Dir.mktmpdir
+      @zipdir = Dir.mktmpdir
+      @zippath = File.join @zipdir, 'test.zip'
+      @password = 'dummypass'
+      @invalid_password = 'invalidpass'
+      File.open(File.join(@filedir, 'test1.txt'), 'w') { |f| f.puts 'test1' }
+      File.open(File.join(@filedir, 'test2.txt'), 'w') { |f| f.puts 'test2' }
+    end
+
+    after do
+      FileUtils.rm_rf @filedir
+      FileUtils.rm_rf @zipdir
+    end
+
+    subject { DecoMailFilter::Core.new.make_zip_file @filedir, @zippath, @password }
+
+    it "creates a zip file" do
+      subject
+      expect(File.exist? @zippath).to eq true
+    end
+
+    it { expect(@password != @invalid_password).to eq true }
+
+    it "creates a zip file which is encrypted with the password" do
+      subject
+      decrypter = Zip::TraditionalDecrypter.new @invalid_password
+      result = true
+      Zip::InputStream.open @zippath, 0 do |input|
+        while entry = input.get_next_entry
+          save_path = File.join @zipdir, entry.name
+          File.open save_path, 'wb' do |f|
+            f.puts input.read
+          end
+        end
+      rescue Zlib::DataError => e
+        result = false
+      end
+      expect(result).to eq false
+      # TODO: Refactor
+    end
+  end
 end
