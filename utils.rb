@@ -1,5 +1,5 @@
 require 'zip'
-require 'fileutils'
+require 'find'
 
 class DecoMailFilter::Utils
   def self.zipfile_encrypted? zippath
@@ -13,5 +13,20 @@ class DecoMailFilter::Utils
       end
     end
     true
+  end
+
+  def self.make_zip_file(filedir, zippath, password)
+    encrypter = Zip::TraditionalEncrypter.new(password)
+    buffer = Zip::OutputStream.write_buffer(::StringIO.new(''), encrypter) do |out|
+      Find.find(filedir) do |p|
+        if File::ftype(p) == "file"
+          out.put_next_entry(File.basename(p))
+          file_buf = File.open(p) { |e| e.read }
+          out.write file_buf
+        end
+      end
+    end
+    File.open(zippath, 'wb') { |f| f.write(buffer.string) }
+    zippath
   end
 end

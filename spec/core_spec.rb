@@ -252,35 +252,4 @@ RSpec.describe "DecoMailFilter::Core" do
       end
     end
   end
-
-  describe "#make_zip_file" do
-    before do
-      @filedir = Dir.mktmpdir
-      @zipdir = Dir.mktmpdir
-      @zippath = File.join @zipdir, 'test.zip'
-      @password = 'dummypass'
-      @invalid_password = 'invalidpass'
-      File.open(File.join(@filedir, 'test1.txt'), 'w') { |f| f.puts 'test1' }
-      File.open(File.join(@filedir, 'test2.txt'), 'w') { |f| f.puts 'test2' }
-    end
-
-    after do
-      FileUtils.rm_rf @filedir
-      FileUtils.rm_rf @zipdir
-    end
-
-    subject { DecoMailFilter::Core.new.make_zip_file @filedir, @zippath, @password }
-
-    it "creates a zip file" do
-      subject
-      expect(File.exist? @zippath).to eq true
-    end
-
-    it { expect(@password != @invalid_password).to eq true }
-
-    it "creates a zip file which is encrypted with the password" do
-      subject
-      expect(DecoMailFilter::Utils.zipfile_encrypted? @zippath).to eq true
-    end
-  end
 end
