@@ -280,20 +280,7 @@ RSpec.describe "DecoMailFilter::Core" do
 
     it "creates a zip file which is encrypted with the password" do
       subject
-      decrypter = Zip::TraditionalDecrypter.new @invalid_password
-      result = true
-      Zip::InputStream.open @zippath, 0 do |input|
-        while entry = input.get_next_entry
-          save_path = File.join @zipdir, entry.name
-          File.open save_path, 'wb' do |f|
-            f.puts input.read
-          end
-        end
-      rescue Zlib::DataError => e
-        result = false
-      end
-      expect(result).to eq false
-      # TODO: Refactor
+      expect(DecoMailFilter::Utils.zipfile_encrypted? @zippath).to eq true
     end
   end
 end
