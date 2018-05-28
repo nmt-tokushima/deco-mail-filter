@@ -27,6 +27,5 @@ class DecoMailFilter::Utils
       end
     end
     File.open(zippath, 'wb') { |f| f.write(buffer.string) }
-    zippath
   end
 end
