@@ -15,7 +15,7 @@ RSpec.describe "DecoMailFilter::Utils" do
     end
   end
 
-  describe "#make_zip_file" do
+  describe ".make_zip_file" do
     before do
       @filedir = Dir.mktmpdir
       @zipdir = Dir.mktmpdir
