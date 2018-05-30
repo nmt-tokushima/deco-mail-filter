@@ -9,6 +9,7 @@ GEM
     method_source (0.9.0)
     mmapscanner (0.3.9)
     null-logger (0.1.5)
+    passgen (1.0.2)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -37,6 +38,7 @@ PLATFORMS
 DEPENDENCIES
   mailparser (= 0.5.8)
   null-logger (= 0.1.5)
+  passgen (= 1.0.2)
   pry (~> 0.11)
   pry-byebug (~> 3.6)
   rake (~> 12.3)
