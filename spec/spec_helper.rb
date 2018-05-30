@@ -101,5 +101,5 @@ end
 
 require 'pry'
 require 'tmpdir'
-require_relative '../core'
-require_relative '../utils'
+require_relative '../src/core'
+require_relative '../src/utils'
