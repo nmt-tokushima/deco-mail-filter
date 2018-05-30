@@ -2,6 +2,15 @@ require 'zip'
 require 'find'
 
 class DecoMailFilter::Utils
+  def self.zipfile_non_encrypted? zippath
+    Zip::InputStream.open zippath, 0 do |input|
+      while entry = input.get_next_entry
+        return false if entry.gp_flags == 9
+      end
+    end
+    true
+  end
+
   def self.zipfile_encrypted? zippath
     Zip::InputStream.open zippath, 0 do |input|
       while entry = input.get_next_entry

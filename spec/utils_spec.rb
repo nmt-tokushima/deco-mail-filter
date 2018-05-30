@@ -1,6 +1,25 @@
 require 'spec_helper'
 
 RSpec.describe "DecoMailFilter::Utils" do
+  describe ".zipfile_non_encrypted?" do
+    subject { DecoMailFilter::Utils.zipfile_non_encrypted? zippath }
+
+    context "non-encrypted" do
+      let(:zippath) { File.join __dir__, "test.zip" }
+      it { is_expected.to eq true }
+    end
+
+    context "encrypted" do
+      let(:zippath) { File.join __dir__, "test-encrypted.zip" }
+      it { is_expected.to eq false }
+    end
+
+    context "1 encrypted file exists" do
+      let(:zippath) { File.join __dir__, "test-1-encrypted.zip" }
+      it { is_expected.to eq false }
+    end
+  end
+
   describe ".zipfile_encrypted?" do
     subject { DecoMailFilter::Utils.zipfile_encrypted? zippath }
 
