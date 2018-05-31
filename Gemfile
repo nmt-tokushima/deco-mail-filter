@@ -4,6 +4,7 @@ gem 'mailparser', '0.5.8'
 gem 'null-logger', '0.1.5', require: 'null_logger'
 gem 'rubyzip', '1.2.1'
 gem 'passgen', '1.0.2'
+gem 'mail', '2.7.0'
 
 group 'development', 'test' do
   gem 'rake', '~> 12.3'
