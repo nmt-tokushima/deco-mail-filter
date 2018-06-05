@@ -1,5 +1,6 @@
 require 'zip'
 require 'find'
+require 'passgen'
 
 class DecoMailFilter::Utils
   def self.zipfile_non_encrypted? zippath
@@ -36,5 +37,9 @@ class DecoMailFilter::Utils
       end
     end
     File.open(zippath, 'wb') { |f| f.write(buffer.string) }
+  end
+
+  def self.generate_password
+    Passgen::generate symbols: true
   end
 end
