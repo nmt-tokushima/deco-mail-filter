@@ -8,7 +8,7 @@ module DecoMailFilter
   DUMMY_MAIL_TO = 'bcc@deco-project.org'
 
   class Core
-    def initialize config = Config.new
+    def initialize config: Config.new
       @bcc_conversion = config.bcc_conversion
       @encrypt_attachments = config.encrypt_attachments
     end

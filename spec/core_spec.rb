@@ -6,8 +6,7 @@ RSpec.describe "DecoMailFilter::Core" do
     test_address_2 = '<test2@example.com>'
 
     let(:config) { DecoMailFilter::Config.new }
-    # let(:filter) { DecoMailFilter::Core.new config = config } # ??? config becomes nil
-    let(:filter) { DecoMailFilter::Core.new config }
+    let(:filter) { DecoMailFilter::Core.new config: config }
     let(:mail_after) { filter.work mail_before }
 
     describe "\"x-mail-filter\" header" do
@@ -97,7 +96,7 @@ RSpec.describe "DecoMailFilter::Core" do
     end
 
     describe "To and Cc Addresses when BCC conversion is disabled" do
-      let(:config) { DecoMailFilter::Config.new bcc_conversion = false }
+      let(:config) { DecoMailFilter::Config.new bcc_conversion: false }
 
       subject { MailParser::Message.new(mail_after).to.map(&:to_s) }
 
