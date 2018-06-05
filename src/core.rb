@@ -2,6 +2,7 @@ require 'mailparser'
 require 'null_logger'
 require 'nkf'
 require 'base64'
+require 'mail'
 require_relative 'config'
 
 module DecoMailFilter
@@ -63,12 +64,49 @@ module DecoMailFilter
         flag_cc = false
       end
 
+      flag_encrypt_attachments = @encrypt_attachments && have_attachment?(mail)
+
       # mail出力
       header = ''
       body = ''
 
+      # Encrypt attachments
+      new_mail = nil
+      if flag_encrypt_attachments
+        tmp_attachments = Dir.mktmpdir
+        write_attachments mail, tmp_attachments
+        tmp_zip_dir = Dir.mktmpdir
+        zippath = File.join tmp_zip_dir, 'attachments.zip'
+        Utils.make_zip_file tmp_attachments, zippath, 'password'
+        #Utils.make_zip_file tmp_attachments, zippath, Utils.generate_password
+        new_mail = Mail.new
+        if mail.part.first.multipart?
+          body_part = Mail::Part.new
+          # TODO: Remove 0 and 1 magic numbers by replacing to `find_if`
+          body_part.text_part = Mail::Part.new do
+            body mail.part.first.part[0].body
+            content_type mail.part.first.part[0].header['content-type'].first.raw
+            content_transfer_encoding mail.part.first.part[0].header['content-transfer-encoding'].first.mechanism
+          end
+          body_part.html_part = Mail::Part.new do
+            body mail.part.first.part[1].body
+            content_type mail.part.first.part[1].header['content-type'].first.raw
+            content_transfer_encoding mail.part.first.part[1].header['content-transfer-encoding'].first.mechanism
+          end
+          new_mail.add_part body_part
+        else
+          new_mail.body = mail.part.first.rawbody
+        end
+        new_mail.add_file filename: 'attachments.zip', content: File.binread(zippath)
+        FileUtils.rm_rf tmp_attachments
+        FileUtils.rm_rf tmp_zip_dir
+      end
+
       # header
       mail.header.add('x-mail-filter', "DECO Mail Filter\r\n")
+      if flag_encrypt_attachments
+        mail.header.add('X-DECO-Mail-Filter-Attachments-Encryption', "done\r\n")
+      end
       mail.header.keys.each do | key |
         if key == 'to' && (flag_to || flag_cc)
           header += "#{key}: #{DUMMY_MAIL_TO}\r\n"
@@ -76,6 +114,9 @@ module DecoMailFilter
         elsif key == 'cc'
           # drop
           logger.info("remove Cc")
+        elsif key == 'content-type' && flag_encrypt_attachments
+          # boundaryを古いメールのものから新しいメールのものに差し替えのため
+          header += "#{key}: #{new_mail.header['content-type']}"
         else
           if mail.header.raw(key).kind_of?(Array)
             mail.header.raw(key).each do | item |
@@ -87,7 +128,11 @@ module DecoMailFilter
         end
       end
       # body
-      body += mail.rawbody
+      if new_mail.nil?
+        body += mail.rawbody
+      else
+        body += new_mail.to_s.split("\r\n\r\n")[1..-1].join("\r\n\r\n") # TODO: Fix
+      end
       logger.info("end")
       header + body
     end
