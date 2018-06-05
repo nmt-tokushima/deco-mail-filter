@@ -39,6 +39,18 @@ class DecoMailFilter::Utils
     File.open(zippath, 'wb') { |f| f.write(buffer.string) }
   end
 
+  def self.extract_zip_file zippath, filedir, password: nil
+    decrypter = password.nil? ? nil : Zip::TraditionalDecrypter.new(password)
+    Zip::InputStream.open zippath, 0, decrypter do |input|
+      while entry = input.get_next_entry
+        save_path = File.join filedir, entry.name
+        File.open save_path, 'wb' do |f|
+          f.puts input.read
+        end
+      end
+    end
+  end
+
   def self.generate_password
     Passgen::generate symbols: true
   end
