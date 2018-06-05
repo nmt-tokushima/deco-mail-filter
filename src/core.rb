@@ -64,13 +64,14 @@ module DecoMailFilter
       end
 
       # mail出力
-      output = ''
+      header = ''
+      body = ''
 
       # header
       mail.header.add('x-mail-filter', "DECO Mail Filter\r\n")
       mail.header.keys.each do | key |
         if key == 'to' && (flag_to || flag_cc)
-          output += "#{key}: #{DUMMY_MAIL_TO}\r\n"
+          header += "#{key}: #{DUMMY_MAIL_TO}\r\n"
           logger.info("fix To: #{DUMMY_MAIL_TO}")
         elsif key == 'cc'
           # drop
@@ -78,17 +79,17 @@ module DecoMailFilter
         else
           if mail.header.raw(key).kind_of?(Array)
             mail.header.raw(key).each do | item |
-              output += "#{key}: #{item.to_s}"
+              header += "#{key}: #{item.to_s}"
             end
           else
-            output += "#{key}: #{mail.header.raw(key).to_s}"
+            header += "#{key}: #{mail.header.raw(key).to_s}"
           end
         end
       end
       # body
-      output += mail.rawbody
+      body += mail.rawbody
       logger.info("end")
-      output
+      header + body
     end
   end
 end
