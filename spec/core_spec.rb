@@ -156,8 +156,10 @@ RSpec.describe "DecoMailFilter::Core" do
       let(:filter) { DecoMailFilter::Core.new config: config }
       let(:mail_after) { filter.work mail_before }
       let(:mail_after_parsed) { MailParser::Message.new mail_after }
+      let(:password) { Passgen::generate symbols: true }
 
       before do
+        allow(DecoMailFilter::Utils).to receive(:generate_password).and_return(password)
         @tmp_dir = Dir.mktmpdir
         filter.write_attachments mail_after_parsed, @tmp_dir
         @zippath = File.join @tmp_dir, 'attachments.zip'
@@ -174,7 +176,7 @@ RSpec.describe "DecoMailFilter::Core" do
       describe "extracted file contains a correct file" do
         before do
           @extract_tmp_dir = Dir.mktmpdir
-          DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: 'password' # TODO: Modify 'password' to mock
+          DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: password
         end
 
         after do
@@ -191,7 +193,7 @@ RSpec.describe "DecoMailFilter::Core" do
         describe "extracted file contains a correct file" do
           before do
             @extract_tmp_dir = Dir.mktmpdir
-            DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: 'password'
+            DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: password
           end
 
           after do
@@ -220,7 +222,7 @@ RSpec.describe "DecoMailFilter::Core" do
         describe "extracted file contains a correct file" do
           before do
             @extract_tmp_dir = Dir.mktmpdir
-            DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: 'password'
+            DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: password
           end
 
           after do

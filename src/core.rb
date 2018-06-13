@@ -80,9 +80,9 @@ module DecoMailFilter
         write_attachments mail, tmp_attachments
         tmp_zip_dir = Dir.mktmpdir
         zippath = File.join tmp_zip_dir, 'attachments.zip'
-        Utils.make_zip_file tmp_attachments, zippath, 'password'
-        #Utils.make_zip_file tmp_attachments, zippath, Utils.generate_password
-        work_side_effect_merge({ encrypt_attachments: true, password: 'password' })
+        password = Utils.generate_password
+        Utils.make_zip_file tmp_attachments, zippath, password
+        work_side_effect_merge({ encrypt_attachments: true, password: password })
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
         if mail.part.first.multipart?
