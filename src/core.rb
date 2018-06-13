@@ -81,6 +81,7 @@ module DecoMailFilter
         #Utils.make_zip_file tmp_attachments, zippath, Utils.generate_password
         # TODO: 副作用としてパスワードの保存と暗号化処理が行われたことの伝達をメソッド呼び出し側に伝える
         new_mail = Mail.new
+        # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
         if mail.part.first.multipart?
           body_part = Mail::Part.new
           text_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'plain' }
@@ -134,7 +135,8 @@ module DecoMailFilter
       if new_mail.nil?
         body += mail.rawbody
       else
-        body += new_mail.to_s.split("\r\n\r\n")[1..-1].join("\r\n\r\n") # TODO: Fix
+        body += new_mail.to_s.split("\r\n\r\n")[1..-1].join("\r\n\r\n")
+        # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
       end
       logger.info("end")
       header + body
