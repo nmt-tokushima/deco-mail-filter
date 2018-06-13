@@ -15,6 +15,7 @@ require_relative 'src/core'
 
 config = DecoMailFilter::Config.new(
   bcc_conversion: (ENV['DECO_MF_BCC_CONVERSION'] != '0'),
+  bcc_conversion_whitelist: (ENV['DECO_MF_BCC_CONVERSION_WHITELIST']&.split('--') || []),
   encrypt_attachments: (ENV['DECO_MF_ENCRYPT_ATTACHMENTS'] != '0')
 )
 filter = DecoMailFilter::Core.new config: config

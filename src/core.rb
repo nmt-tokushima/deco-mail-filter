@@ -13,6 +13,7 @@ module DecoMailFilter
 
     def initialize config: Config.new
       @bcc_conversion = config.bcc_conversion
+      @bcc_conversion_whitelist = config.bcc_conversion_whitelist
       @encrypt_attachments = config.encrypt_attachments
       @work_side_effect = nil
     end
@@ -61,10 +62,16 @@ module DecoMailFilter
       logger.info("Cc size: #{mail.cc.size}")
 
       # BCC変換が無効の場合
-      # 宛先ドメインが全て同じであることの確認
-      if !@bcc_conversion && (mail.to.map(&:domain) + mail.cc.map(&:domain)).uniq.size == 1
-        flag_to = false
-        flag_cc = false
+      if !@bcc_conversion
+        domains = (mail.to.map(&:domain) + mail.cc.map(&:domain))
+        # 宛先ドメインが全て同じであることの確認
+        if domains.uniq.size == 1
+          # 指定されたドメインであることの確認
+          if @bcc_conversion_whitelist.include? domains.first
+            flag_to = false
+            flag_cc = false
+          end
+        end
       end
 
       flag_encrypt_attachments = @encrypt_attachments && have_attachment?(mail)
