@@ -9,9 +9,12 @@ module DecoMailFilter
   DUMMY_MAIL_TO = 'bcc@deco-project.org'
 
   class Core
+    attr_reader :work_side_effect
+
     def initialize config: Config.new
       @bcc_conversion = config.bcc_conversion
       @encrypt_attachments = config.encrypt_attachments
+      @work_side_effect = nil
     end
 
     attr_accessor :logger
@@ -79,7 +82,7 @@ module DecoMailFilter
         zippath = File.join tmp_zip_dir, 'attachments.zip'
         Utils.make_zip_file tmp_attachments, zippath, 'password'
         #Utils.make_zip_file tmp_attachments, zippath, Utils.generate_password
-        # TODO: 副作用としてパスワードの保存と暗号化処理が行われたことの伝達をメソッド呼び出し側に伝える
+        work_side_effect_merge({ encrypt_attachments: true, password: 'password' })
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
         if mail.part.first.multipart?
@@ -141,5 +144,10 @@ module DecoMailFilter
       logger.info("end")
       header + body
     end
+
+    private
+      def work_side_effect_merge(hash)
+        @work_side_effect = (@work_side_effect || {}).merge(hash)
+      end
   end
 end
