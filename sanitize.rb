@@ -20,7 +20,7 @@ config = DecoMailFilter::Config.new(
 filter = DecoMailFilter::Core.new config: config
 filter.logger = Syslog
 print filter.work $stdin.read
-unless filter.work_side_effect.nil?
+if filter.work_side_effect
   if filter.work_side_effect.encrypt_attachments
     # TODO: パスワード連絡メール送信
     # filter.work_side_effect.password
