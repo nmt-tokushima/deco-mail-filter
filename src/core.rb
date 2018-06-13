@@ -79,6 +79,7 @@ module DecoMailFilter
         zippath = File.join tmp_zip_dir, 'attachments.zip'
         Utils.make_zip_file tmp_attachments, zippath, 'password'
         #Utils.make_zip_file tmp_attachments, zippath, Utils.generate_password
+        # TODO: 副作用としてパスワードの保存と暗号化処理が行われたことの伝達をメソッド呼び出し側に伝える
         new_mail = Mail.new
         if mail.part.first.multipart?
           body_part = Mail::Part.new
@@ -98,6 +99,7 @@ module DecoMailFilter
           new_mail.body = mail.part.first.rawbody
         end
         new_mail.add_file filename: 'attachments.zip', content: File.binread(zippath)
+        # TODO: ファイル名を日本語に(SJIS?)
         FileUtils.rm_rf tmp_attachments
         FileUtils.rm_rf tmp_zip_dir
       end
