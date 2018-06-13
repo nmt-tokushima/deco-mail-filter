@@ -83,16 +83,17 @@ module DecoMailFilter
         new_mail = Mail.new
         if mail.part.first.multipart?
           body_part = Mail::Part.new
-          # TODO: Remove 0 and 1 magic numbers by replacing to `find_if`
+          text_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'plain' }
           body_part.text_part = Mail::Part.new do
-            body mail.part.first.part[0].body
-            content_type mail.part.first.part[0].header['content-type'].first.raw
-            content_transfer_encoding mail.part.first.part[0].header['content-transfer-encoding'].first.mechanism
+            body text_part.body
+            content_type text_part.header['content-type'].first.raw
+            content_transfer_encoding text_part.header['content-transfer-encoding'].first.mechanism
           end
+          html_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'html' }
           body_part.html_part = Mail::Part.new do
-            body mail.part.first.part[1].body
-            content_type mail.part.first.part[1].header['content-type'].first.raw
-            content_transfer_encoding mail.part.first.part[1].header['content-transfer-encoding'].first.mechanism
+            body html_part.body
+            content_type html_part.header['content-type'].first.raw
+            content_transfer_encoding html_part.header['content-transfer-encoding'].first.mechanism
           end
           new_mail.add_part body_part
         else
