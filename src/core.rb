@@ -127,7 +127,7 @@ module DecoMailFilter
         if key == 'to' && (flag_to || flag_cc)
           header += "#{key}: #{@bcc_dummy_to}\r\n"
           logger.info("fix To: #{@bcc_dummy_to}")
-        elsif key == 'cc'
+        elsif key == 'cc' && flag_cc
           # drop
           logger.info("remove Cc")
         elsif key == 'content-type' && flag_encrypt_attachments
