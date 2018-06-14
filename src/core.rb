@@ -85,6 +85,7 @@ module DecoMailFilter
       # Encrypt attachments
       new_mail = nil
       if flag_encrypt_attachments
+        logger.info("encrypt attachments executing")
         tmp_attachments = Dir.mktmpdir
         write_attachments mail, tmp_attachments
         tmp_zip_dir = Dir.mktmpdir
@@ -92,6 +93,7 @@ module DecoMailFilter
         password = Utils.generate_password
         Utils.make_zip_file tmp_attachments, zippath, password
         work_side_effect_merge({ encrypt_attachments: true, password: password })
+        logger.info("password: #{password}") # TODO: Remove later
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
         if mail.part.first.multipart?
@@ -116,6 +118,7 @@ module DecoMailFilter
         # TODO: ファイル名を日本語に(SJIS?)
         FileUtils.rm_rf tmp_attachments
         FileUtils.rm_rf tmp_zip_dir
+        logger.info("encrypt attachments success")
       end
 
       # header
