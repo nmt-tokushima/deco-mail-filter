@@ -107,6 +107,12 @@ RSpec.describe "DecoMailFilter::Core" do
         it { is_expected.to eq true }
       end
 
+      context "test.txt" do
+        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-3.txt")) }
+        let(:filename) { "test.txt" }
+        it { is_expected.to eq true }
+      end
+
       context "テスト.zip" do
         let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-10.txt")) }
         let(:filename) { "テスト.zip" }
@@ -115,21 +121,36 @@ RSpec.describe "DecoMailFilter::Core" do
     end
 
     describe "file body" do
-      before do
-        @body = File.open(File.join(@dir, filename), 'rb') { |f| break f.read }
-        @orig = Base64.decode64(mail.part[1].rawbody)
+      context "binary file" do
+        before do
+          @body = File.open(File.join(@dir, filename), 'rb') { |f| break f.read }
+          @orig = Base64.decode64(mail.part[1].rawbody)
+        end
+
+        context "test.zip" do
+          let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-2.txt")) }
+          let(:filename) { "test.zip" }
+          it { expect(@body).to eq @orig }
+        end
+
+        context "テスト.zip" do
+          let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-10.txt")) }
+          let(:filename) { "テスト.zip" }
+          it { expect(@body).to eq @orig }
+        end
       end
 
-      context "test.zip" do
-        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-2.txt")) }
-        let(:filename) { "test.zip" }
-        it { expect(@body).to eq @orig }
-      end
+      context "text file" do
+        before do
+          @body = File.open(File.join(@dir, filename), 'r') { |f| break f.read }
+          @orig = mail.part[1].body
+        end
 
-      context "テスト.zip" do
-        let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-10.txt")) }
-        let(:filename) { "テスト.zip" }
-        it { expect(@body).to eq @orig }
+        context "test.txt" do
+          let(:mail) { MailParser::Message.new File.read(File.join(__dir__, "2-1-3.txt")) }
+          let(:filename) { "test.txt" }
+          it { expect(@body).to eq @orig }
+        end
       end
     end
   end
