@@ -136,7 +136,7 @@ module DecoMailFilter
           logger.info("remove Cc")
         elsif key == 'content-type' && flag_encrypt_attachments
           # boundaryを古いメールのものから新しいメールのものに差し替えのため
-          header += "#{key}: #{new_mail.header['content-type']}"
+          header += "#{key}: #{new_mail.header['content-type']}\r\n"
         else
           if mail.header.raw(key).kind_of?(Array)
             mail.header.raw(key).each do | item |
