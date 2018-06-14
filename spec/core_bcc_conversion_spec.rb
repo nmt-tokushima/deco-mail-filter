@@ -37,7 +37,7 @@ RSpec.describe "DecoMailFilter::Core" do
           EOF
         end
 
-        it { is_expected.to eq [DecoMailFilter::DUMMY_MAIL_TO] }
+        it { is_expected.to eq [config.bcc_dummy_to] }
       end
 
       describe "1 To address and 1 CC address change to 1 dummy address" do
@@ -52,7 +52,7 @@ RSpec.describe "DecoMailFilter::Core" do
           EOF
         end
 
-        it { is_expected.to eq [DecoMailFilter::DUMMY_MAIL_TO] }
+        it { is_expected.to eq [config.bcc_dummy_to] }
       end
     end
 

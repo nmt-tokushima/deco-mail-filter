@@ -6,13 +6,12 @@ require 'mail'
 require_relative 'config'
 
 module DecoMailFilter
-  DUMMY_MAIL_TO = 'bcc@deco-project.org'
-
   class Core
     attr_reader :work_side_effect
 
     def initialize config: Config.new
       @bcc_conversion = config.bcc_conversion
+      @bcc_dummy_to = config.bcc_dummy_to
       @bcc_conversion_whitelist = config.bcc_conversion_whitelist
       @encrypt_attachments = config.encrypt_attachments
       @work_side_effect = nil
@@ -126,8 +125,8 @@ module DecoMailFilter
       end
       mail.header.keys.each do | key |
         if key == 'to' && (flag_to || flag_cc)
-          header += "#{key}: #{DUMMY_MAIL_TO}\r\n"
-          logger.info("fix To: #{DUMMY_MAIL_TO}")
+          header += "#{key}: #{@bcc_dummy_to}\r\n"
+          logger.info("fix To: #{@bcc_dummy_to}")
         elsif key == 'cc'
           # drop
           logger.info("remove Cc")
