@@ -4,6 +4,7 @@ require 'nkf'
 require 'base64'
 require 'mail'
 require_relative 'config'
+require_relative 'utils'
 
 module DecoMailFilter
   class Core
