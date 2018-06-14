@@ -87,8 +87,8 @@ RSpec.describe "DecoMailFilter::Core" do
           EOF
         end
 
-        it { pending; is_expected.to include test_address }
-        it { pending; is_expected.to include test_address_2 }
+        it { is_expected.to include test_address }
+        it { is_expected.to include test_address_2 }
       end
 
       context "Different domains" do
@@ -102,8 +102,8 @@ RSpec.describe "DecoMailFilter::Core" do
           EOF
         end
 
-        it { is_expected.to include "<#{DecoMailFilter::DUMMY_MAIL_TO}>" }
-        it { is_expected.not_to include test_address }
+        it { pending; is_expected.to include "<#{DecoMailFilter::DUMMY_MAIL_TO}>" }
+        it { pending; is_expected.not_to include test_address }
         it { is_expected.not_to include test_address_2 }
       end
 
@@ -119,7 +119,7 @@ RSpec.describe "DecoMailFilter::Core" do
           EOF
         end
 
-        it { pending; is_expected.to include test_address }
+        it { is_expected.to include test_address }
         it { expect(MailParser::Message.new(mail_after).cc).to eq [] }
       end
     end
