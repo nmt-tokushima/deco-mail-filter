@@ -3,8 +3,8 @@ require 'spec_helper'
 RSpec.describe "DecoMailFilter::Core" do
   describe "#work" do
     describe "Attachment files when encrypt attachment is enabled" do
-      let(:filepath) { File.join __dir__, 'mail-1-attachment.txt' }
-      let(:mail_before) { File.read filepath }
+      let(:filename) { 'mail-1-attachment.txt' }
+      let(:mail_before) { read_mail filename }
       let(:mail_before_parsed) { MailParser::Message.new mail_before }
       let(:config) { DecoMailFilter::Config.new encrypt_attachments: true }
       let(:filter) { DecoMailFilter::Core.new config: config }
@@ -41,7 +41,7 @@ RSpec.describe "DecoMailFilter::Core" do
       end
 
       context "2 attachment files" do
-        let(:filepath) { File.join __dir__, 'mail-2-attachment.txt' }
+        let(:filename) { 'mail-2-attachment.txt' }
         it { is_expected.to eq true }
 
         describe "extracted file contains a correct file" do
@@ -60,7 +60,7 @@ RSpec.describe "DecoMailFilter::Core" do
       end
 
       context "SJIS text file" do
-        let(:filepath) { File.join __dir__, 'mail-sjis-attachment.txt' }
+        let(:filename) { 'mail-sjis-attachment.txt' }
         it { is_expected.to eq true }
 
         describe "keep SJIS" do
@@ -82,7 +82,7 @@ RSpec.describe "DecoMailFilter::Core" do
       end
 
       context "multipart/alternative" do
-        let(:filepath) { File.join __dir__, 'mail-html-1-attachment.txt' }
+        let(:filename) { 'mail-html-1-attachment.txt' }
         it { is_expected.to eq true }
 
         describe "content-type (type and subtype)" do

@@ -103,3 +103,7 @@ require 'pry'
 require 'tmpdir'
 require_relative '../src/core'
 require_relative '../src/utils'
+
+def read_mail(filename)
+  File.read(File.join(__dir__, 'mail-mocks', filename))
+end
