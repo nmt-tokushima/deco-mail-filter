@@ -49,6 +49,7 @@ module DecoMailFilter
           File.open(File.join(dir, filename), 'wb') do |f|
             f.write Base64.decode64 e.rawbody
           end
+          # TODO: quoted-printableを考慮する
         end
       end
     end
