@@ -59,6 +59,28 @@ RSpec.describe "DecoMailFilter::Core" do
         end
       end
 
+      context "SJIS text file" do
+        let(:filepath) { File.join __dir__, 'mail-sjis-attachment.txt' }
+        it { is_expected.to eq true }
+
+        describe "keep SJIS" do
+          before do
+            @extract_tmp_dir = Dir.mktmpdir
+            DecoMailFilter::Utils.extract_zip_file @zippath, @extract_tmp_dir, password: password
+          end
+
+          after do
+            FileUtils.rm_rf @extract_tmp_dir
+          end
+
+          it do
+            md5_before = Digest::MD5.file(File.join(__dir__, 'test-sjis.txt'))
+            md5_after  = Digest::MD5.file(File.join(@extract_tmp_dir, 'test-sjis.txt'))
+            expect(md5_after).to eq md5_before
+          end
+        end
+      end
+
       context "multipart/alternative" do
         let(:filepath) { File.join __dir__, 'mail-html-1-attachment.txt' }
         it { is_expected.to eq true }

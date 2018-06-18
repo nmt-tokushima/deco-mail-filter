@@ -1,3 +1,4 @@
 mail-1-attachment.txt == 1-1-2.txt
 mail-2-attachment.txt == 1-1-5.txt
+mail-sjis-attachment.txt == 1-1-6.txt
 mail-html-1-attachment.txt == 2-2-2.txt
