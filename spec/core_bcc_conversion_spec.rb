@@ -102,15 +102,15 @@ RSpec.describe "DecoMailFilter::Core" do
         describe { let(:mail_before) { mail_1_to_1_cc };         it { is_expected.to eq to_before } }
       end
 
-      context "whitelist contains a domain" do
-        let(:config) { DecoMailFilter::Config.new bcc_conversion_whitelist: [domain_1] }
+      context "disable_domains (whitelist) contains a domain" do
+        let(:config) { DecoMailFilter::Config.new bcc_conversion_disable_domains: [domain_1] }
         describe { let(:mail_before) { mail_2_to };             it { is_expected.to eq to_before } }
         describe { let(:mail_before) { mail_1_to_1_cc };        it { is_expected.to eq to_before } }
         describe { let(:mail_before) { mail_1_to_1_another_to}; it { is_expected.to eq [config.bcc_dummy_to] } }
         describe { let(:mail_before) { mail_1_to_1_another_cc}; it { is_expected.to eq [config.bcc_dummy_to] } }
 
-        context "whitelist contains 2 domains" do
-          let(:config) { DecoMailFilter::Config.new bcc_conversion_whitelist: [domain_1, domain_2] }
+        context "disable_domains (whitelist) contains 2 domains" do
+          let(:config) { DecoMailFilter::Config.new bcc_conversion_disable_domains: [domain_1, domain_2] }
           describe { let(:mail_before) { mail_2_to };                   it { is_expected.to eq to_before } }
           describe { let(:mail_before) { mail_3_different_domains_to }; it { is_expected.to eq [config.bcc_dummy_to] } }
         end

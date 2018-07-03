@@ -13,8 +13,8 @@ module DecoMailFilter
     def initialize config: Config.new
       @bcc_conversion = config.bcc_conversion
       @bcc_dummy_to = config.bcc_dummy_to
-      @bcc_conversion_whitelist = config.bcc_conversion_whitelist
-      @encrypt_attachments = config.encrypt_attachments
+      @bcc_conversion_disable_domains = config.bcc_conversion_disable_domains
+      @attachments_encryption = config.attachments_encryption
       @work_side_effect = nil
     end
 
@@ -77,7 +77,7 @@ module DecoMailFilter
           # 宛先ドメインが全て同じであることの確認
           if domains.uniq.size == 1
             # 指定されたドメインであることの確認
-            if @bcc_conversion_whitelist.include? domains.first
+            if @bcc_conversion_disable_domains.include? domains.first
               flag_to = false
               flag_cc = false
             end
@@ -85,7 +85,7 @@ module DecoMailFilter
         end
       end
 
-      flag_encrypt_attachments = @encrypt_attachments && have_attachment?(mail)
+      flag_encrypt_attachments = @attachments_encryption && have_attachment?(mail)
 
       # mail出力
       header = ''

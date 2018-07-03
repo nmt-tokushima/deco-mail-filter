@@ -11,9 +11,8 @@ module DecoMailFilter
     attr_reader(
       :bcc_conversion,
       :bcc_dummy_to,
-      :bcc_conversion_whitelist,
       :bcc_conversion_disable_domains,
-      :encrypt_attachments, # TODO: Replace to "attachments_encryption"
+      :attachments_encryption,
       :attachments_encryption_password_length,
       :attachments_encryption_subtitle,
       :attachments_encryption_additional_text,
@@ -27,8 +26,8 @@ module DecoMailFilter
     def initialize(
       bcc_conversion: true,
       bcc_dummy_to: DEFAULT_DUMMY_TO,
-      bcc_conversion_whitelist: [],
-      encrypt_attachments: false, # TODO: Replace to "attachments_encryption"
+      bcc_conversion_disable_domains: [],
+      attachments_encryption: false,
       attachments_encryption_password_length: 8,
       attachments_encryption_subtitle: '',
       attachments_encryption_additional_text: '',
@@ -40,8 +39,8 @@ module DecoMailFilter
     )
       @bcc_conversion = bcc_conversion
       @bcc_dummy_to = bcc_dummy_to
-      @bcc_conversion_whitelist = bcc_conversion_whitelist
-      @encrypt_attachments = encrypt_attachments
+      @bcc_conversion_disable_domains = bcc_conversion_disable_domains
+      @attachments_encryption = attachments_encryption
     end
 
     def self.create_from_json_url url
@@ -58,17 +57,6 @@ module DecoMailFilter
         end
       end
       hash = JSON.parse json_str
-
-      # NOTE: Temporary code for compatibility
-      value = hash.delete "attachments_encryption"
-      unless value.nil?
-        hash["encrypt_attachments"] = value
-      end
-      value = hash.delete "bcc_conversion_disable_domains"
-      unless value.nil?
-        hash["bcc_conversion_whitelist"] = value
-      end
-
       new hash.keys.map(&:to_sym).zip(hash.values).to_h
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe "DecoMailFilter::Core" do
       let(:filename) { 'mail-1-attachment.txt' }
       let(:mail_before) { read_mail filename }
       let(:mail_before_parsed) { MailParser::Message.new mail_before }
-      let(:config) { DecoMailFilter::Config.new encrypt_attachments: true }
+      let(:config) { DecoMailFilter::Config.new attachments_encryption: true }
       let(:filter) { DecoMailFilter::Core.new config: config }
       let(:mail_after) { filter.work mail_before }
       let(:mail_after_parsed) { MailParser::Message.new mail_after }
