@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7.22
+    restart: always
+    volumes:
+      - /var/deco-mail-filter/mysql:/var/lib/mysql
+    ports:
+      - '3306:3306'
+  setting:
+    image: nmttokushima/deco-mail-filter-setting:1
+    restart: always
+    depends_on:
+      - db
+    environment:
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      DATABASE_URL: mysql2://root:@db:3306/deco_mail_filter_production
+    volumes:
+      - /var/deco-mail-filter/setting/log:/app/log
+      - /var/deco-mail-filter/setting/tmp:/app/tmp
+  filter:
+    image: nmttokushima/deco-mail-filter:1
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DECO_MF_KEEP_ORIGINAL_MAIL: 1
+      DECO_MF_CONFIG_URL: http://setting/api/v1/setting.json
+    volumes:
+      - /var/deco-mail-filter/filter/tmp:/usr/local/deco-mail-filter/s/tmp
+    command: 172.0.0.1:10025 127.0.0.1:10026
