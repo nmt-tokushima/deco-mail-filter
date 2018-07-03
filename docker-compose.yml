@@ -3,6 +3,8 @@ services:
   db:
     image: mysql:5.7.22
     restart: always
+    environment:
+      ALLOW_EMPTY_PASSWORD: yes
     volumes:
       - /var/deco-mail-filter/mysql:/var/lib/mysql
     ports:
@@ -15,9 +17,13 @@ services:
     environment:
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
       DATABASE_URL: mysql2://root:@db:3306/deco_mail_filter_production
+      RAILS_ENV: production
     volumes:
       - /var/deco-mail-filter/setting/log:/app/log
       - /var/deco-mail-filter/setting/tmp:/app/tmp
+    ports:
+      - '80:80'
+    command: bin/rails s -e production -b 0.0.0.0
   filter:
     image: nmttokushima/deco-mail-filter:1
     restart: always
