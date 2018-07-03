@@ -13,14 +13,9 @@ Syslog.info("RCPT TO: [#{ARGV[0].chop}]")
 
 require_relative 'src/core'
 
-bcc_dummy_to = ENV['DECO_MF_BCC_DUMMY_TO']
-bcc_dummy_to = (bcc_dummy_to.nil? || bcc_dummy_to == '') ? DecoMailFilter::Confing::DEFAULT_DUMMY_TO : bcc_dummy_to
-config = DecoMailFilter::Config.new(
-  bcc_conversion: (ENV['DECO_MF_BCC_CONVERSION'] != '0'),
-  bcc_dummy_to: bcc_dummy_to,
-  bcc_conversion_whitelist: (ENV['DECO_MF_BCC_CONVERSION_WHITELIST']&.split('--') || []),
-  encrypt_attachments: (ENV['DECO_MF_ENCRYPT_ATTACHMENTS'] != '0')
-)
+url = ENV['DECO_MF_CONFIG_URL']
+url = (url.nil? || url == '') ? 'http://127.0.0.1/api/v1/setting.json' : url
+config = DecoMailFilter::Config.create_from_json_url url
 filter = DecoMailFilter::Core.new config: config
 filter.logger = Syslog
 print filter.work $stdin.read
