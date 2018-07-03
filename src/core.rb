@@ -85,7 +85,7 @@ module DecoMailFilter
         end
       end
 
-      flag_encrypt_attachments = @attachments_encryption && have_attachment?(mail)
+      flag_attachments_encryption = @attachments_encryption && have_attachment?(mail)
 
       # mail出力
       header = ''
@@ -93,7 +93,7 @@ module DecoMailFilter
 
       # Encrypt attachments
       new_mail = nil
-      if flag_encrypt_attachments
+      if flag_attachments_encryption
         logger.info("encrypt attachments executing")
         tmp_attachments = Dir.mktmpdir
         write_attachments mail, tmp_attachments
@@ -101,7 +101,7 @@ module DecoMailFilter
         zippath = File.join tmp_zip_dir, 'attachments.zip'
         password = Utils.generate_password
         Utils.make_zip_file tmp_attachments, zippath, password
-        work_side_effect_merge({ encrypt_attachments: true, password: password })
+        work_side_effect_merge({ attachments_encryption: true, password: password })
         logger.info("password: #{password}") # TODO: Remove later
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
@@ -132,7 +132,7 @@ module DecoMailFilter
 
       # header
       mail.header.add('x-mail-filter', "DECO Mail Filter\r\n")
-      if flag_encrypt_attachments
+      if flag_attachments_encryption
         mail.header.add('X-DECO-Mail-Filter-Attachments-Encryption', "done\r\n")
       end
       mail.header.keys.each do | key |
@@ -142,7 +142,7 @@ module DecoMailFilter
         elsif key == 'cc' && flag_cc
           # drop
           logger.info("remove Cc")
-        elsif key == 'content-type' && flag_encrypt_attachments
+        elsif key == 'content-type' && flag_attachments_encryption
           # boundaryを古いメールのものから新しいメールのものに差し替えのため
           header += "#{key}: #{new_mail.header['content-type']}\r\n"
         else
