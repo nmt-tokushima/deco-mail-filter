@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'kconv'
 
 RSpec.describe "DecoMailFilter::Core" do
   describe "#work" do
@@ -114,7 +115,7 @@ RSpec.describe "DecoMailFilter::Core" do
 
       context "テスト.zip" do
         let(:mail) { MailParser::Message.new read_mail "2-1-10.txt" }
-        let(:filename) { "テスト.zip" }
+        let(:filename) { "テスト.zip".tosjis }
         it { is_expected.to eq true }
       end
     end
@@ -134,7 +135,7 @@ RSpec.describe "DecoMailFilter::Core" do
 
         context "テスト.zip" do
           let(:mail) { MailParser::Message.new read_mail "2-1-10.txt" }
-          let(:filename) { "テスト.zip" }
+          let(:filename) { "テスト.zip".tosjis }
           it { expect(@body).to eq @orig }
         end
       end

@@ -39,7 +39,7 @@ module DecoMailFilter
     def write_attachments mail, dir
       return unless have_attachment? mail
       mail.part[1..-1].each do |e|
-        filename = NKF.nkf '-w', e.filename
+        filename = NKF.nkf '-s', e.filename
         case e.header['content-type'].first.type
         when 'text'
           File.open(File.join(dir, filename), 'w') do |f|
