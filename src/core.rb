@@ -1,6 +1,6 @@
 require 'mailparser'
 require 'null_logger'
-require 'nkf'
+require 'kconv'
 require 'base64'
 require 'mail'
 require_relative 'config'
@@ -39,7 +39,7 @@ module DecoMailFilter
     def write_attachments mail, dir
       return unless have_attachment? mail
       mail.part[1..-1].each do |e|
-        filename = NKF.nkf '-s', e.filename
+        filename = e.filename.tosjis
         case e.header['content-type'].first.type
         when 'text'
           File.open(File.join(dir, filename), 'w') do |f|
@@ -56,7 +56,7 @@ module DecoMailFilter
 
     def attachment_filenames mail
       if have_attachment? mail
-        mail.part[1..-1].map { |e| filename = NKF.nkf '-s', e.filename }
+        mail.part[1..-1].map { |e| filename = e.filename.tosjis }
       else
         []
       end
