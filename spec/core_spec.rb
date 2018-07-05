@@ -154,4 +154,28 @@ RSpec.describe "DecoMailFilter::Core" do
       end
     end
   end
+
+  describe "#attachment_filenames" do
+    subject { DecoMailFilter::Core.new.attachment_filenames mail }
+
+    context "nothing" do
+      let(:mail) { MailParser::Message.new read_mail "2-1-1.txt" }
+      it { is_expected.to eq [] }
+    end
+
+    context "test.zip" do
+      let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" }
+      it { is_expected.to eq ["test.zip"] }
+    end
+
+    context "test.txt, test.zip" do
+      let(:mail) { MailParser::Message.new read_mail "2-1-5.txt" }
+      it { is_expected.to eq ["test.txt", "test.zip"] }
+    end
+
+    context "テスト.txt, テスト.zip" do
+      let(:mail) { MailParser::Message.new read_mail "2-1-13.txt" }
+      it { is_expected.to eq ["テスト.txt".tosjis, "テスト.zip".tosjis] }
+    end
+  end
 end

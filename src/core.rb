@@ -54,6 +54,14 @@ module DecoMailFilter
       end
     end
 
+    def attachment_filenames mail
+      if have_attachment? mail
+        mail.part[1..-1].map { |e| filename = NKF.nkf '-s', e.filename }
+      else
+        []
+      end
+    end
+
     def work input
       mail = MailParser::Message.new(input)
 
