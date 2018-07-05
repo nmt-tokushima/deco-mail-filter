@@ -20,7 +20,7 @@ filter = DecoMailFilter::Core.new config: config
 filter.logger = Syslog
 print filter.work $stdin.read
 if filter.work_side_effect
-  if filter.work_side_effect.attachments_encryption
+  if filter.work_side_effect[:attachments_encryption]
     # TODO: パスワード連絡メール送信
     # filter.work_side_effect.password
     # NOTE: パスワードメール送信のタイミングをずらしたい場合は filter.work の結果を即座に print しないようにする
