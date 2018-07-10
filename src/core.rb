@@ -7,6 +7,8 @@ require_relative 'config'
 require_relative 'utils'
 
 module DecoMailFilter
+  class UnsupportedEncodingMechanism < StandardError; end
+
   class Core
     attr_reader :work_side_effect
 
@@ -51,10 +53,19 @@ module DecoMailFilter
             f.write e.body
           end
         else
-          File.open(File.join(dir, filename), 'wb') do |f|
-            f.write Base64.decode64 e.rawbody
+          mechanism = e.header['content-transfer-encoding'].first.mechanism
+          case mechanism
+          when 'base64'
+            File.open(File.join(dir, filename), 'wb') do |f|
+              f.write Base64.decode64 e.rawbody
+            end
+          when 'quoted-printable'
+            File.open(File.join(dir, filename), 'wb') do |f|
+              f.write e.rawbody.unpack1 'M'
+            end
+          else
+            raise UnsupportedEncodingMechanism.new mechanism
           end
-          # TODO: quoted-printableを考慮する
         end
       end
     end
@@ -109,7 +120,13 @@ module DecoMailFilter
       if flag_attachments_encryption
         logger.info("encrypt attachments executing")
         tmp_attachments = Dir.mktmpdir
-        write_attachments mail, tmp_attachments
+        begin
+          write_attachments mail, tmp_attachments
+        rescue UnsupportedEncodingType => e
+          FileUtils.rm_rf tmp_attachments
+          send_unsupported_encoding_mechanism_mail mail.from
+          raise e
+        end
         tmp_zip_dir = Dir.mktmpdir
         zippath = File.join tmp_zip_dir, 'attachments.zip'
         password = Utils.generate_password
@@ -224,6 +241,16 @@ module DecoMailFilter
     private
       def work_side_effect_merge(hash)
         @work_side_effect = (@work_side_effect || {}).merge(hash)
+      end
+
+      def send_unsupported_encoding_mechanism_mail sender
+        mail = Mail.new
+        mail.from = sender # TODO: senderで良い？設定に追加する？固定値利用？
+        mail.to sender
+        mail.subject '【DECO Mail Filter】添付ファイル自動暗号化エラー'
+        mail.body '対応していない添付ファイルのエンコード形式です。添付ファイルはBase64かQuoted-Printable形式でエンコードしてください。'
+        mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
+        mail.deliver
       end
   end
 end

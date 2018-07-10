@@ -27,6 +27,10 @@ config.rcpts = ARGV[0].chop.split(/,/)
 filter = DecoMailFilter::Core.new config: config
 filter.logger = Syslog
 
-output = filter.work $stdin.read
+begin
+  output = filter.work $stdin.read
+rescue UnsupportedEncodingMechanism => e
+  exit 1 # TODO: ここで異常終了するとsmtpprox_for_decomfは正しく動ける？調べる
+end
 filter.work_before_output
 print output
