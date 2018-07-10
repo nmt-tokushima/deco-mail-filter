@@ -7,11 +7,12 @@ require_relative 'config'
 require_relative 'utils'
 
 module DecoMailFilter
+  ENCRYPTED_ATTACHMENT_FILENAME = 'attachments.zip'
+  # TODO: ファイル名を日本語に(SJIS?)
+
   class UnsupportedEncodingMechanism < StandardError; end
 
   class Core
-    attr_reader :work_side_effect
-
     def initialize config: Config.new
       @bcc_conversion = config.bcc_conversion
       @bcc_dummy_to = config.bcc_dummy_to
@@ -21,8 +22,6 @@ module DecoMailFilter
       @attachments_encryption_password_notification = config.attachments_encryption_password_notification
       @smtp_host = config.smtp_host
       @smtp_port = config.smtp_port
-
-      @work_side_effect = nil
     end
 
     attr_accessor :logger
@@ -131,14 +130,15 @@ module DecoMailFilter
         zippath = File.join tmp_zip_dir, 'attachments.zip'
         password = Utils.generate_password
         Utils.make_zip_file tmp_attachments, zippath, password
-        work_side_effect_merge({
-          sender: mail.from,
-          attachments_encryption: true,
-          subject: (mail.subject != nil ? mail.subject : 'n/a'),
-          date: (mail.header['Date'] != nil ? mail.header['Date'].to_s : 'n/a'),
-          attachment_filenames: attachment_filenames(mail),
-          password: password,
-        })
+
+        original_subject = mail.subject != nil ? mail.subject : 'n/a'
+        original_date = mail.header['Date'] != nil ? mail.header['Date'].to_s : 'n/a'
+        send_attachments_encryption_password_mail(
+          mail.from,
+          original_subject, original_date,
+          attachment_filenames(mail), password
+        )
+
         logger.info("password: #{password}") # TODO: Remove later
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
@@ -160,8 +160,7 @@ module DecoMailFilter
         else
           new_mail.body = mail.part.first.rawbody
         end
-        new_mail.add_file filename: 'attachments.zip', content: File.binread(zippath)
-        # TODO: ファイル名を日本語に(SJIS?)
+        new_mail.add_file filename: ENCRYPTED_ATTACHMENT_FILENAME, content: File.binread(zippath)
         FileUtils.rm_rf tmp_attachments
         FileUtils.rm_rf tmp_zip_dir
         logger.info("encrypt attachments success")
@@ -203,44 +202,55 @@ module DecoMailFilter
       header + body
     end
 
-    def work_before_output
-      return if @work_side_effect.nil?
-
-      if @work_side_effect[:attachments_encryption]
-        Utils.send_pass_mail(
-          @work_side_effect[:sender],
-          @work_side_effect[:sender],
-          "【DECO Mail Filter】添付ファイル自動暗号化通知",
-          @work_side_effect[:subject],
-          @work_side_effect[:date],
-          @work_side_effect[:attachment_filenames],
-          @work_side_effect[:password],
-          @attachments_encryption_additional_text,
-          smtp_host,
-          smtp_port
+    private
+      def send_attachments_encryption_password_mail(
+        sender,
+        subject, date,
+        attachment_filenames, password
+      )
+        send_pass_mail(
+          sender, sender,
+          subject, date,
+          attachment_filenames, password
         )
         if @attachments_encryption_password_notification
           @rcpts.each do |r|
-            Utils.send_pass_mail(
-              @work_side_effect[:sender],
-              r,
-              "【DECO Mail Filter】添付ファイル自動暗号化通知",
-              @work_side_effect[:subject],
-              @work_side_effect[:date],
-              @work_side_effect[:attachment_filenames],
-              @work_side_effect[:password],
-              @attachments_encryption_additional_text,
-              smtp_host,
-              smtp_port
+            send_pass_mail(
+              sender, r,
+              subject, date,
+              attachment_filenames, password
             )
           end
         end
       end
-    end
 
-    private
-      def work_side_effect_merge(hash)
-        @work_side_effect = (@work_side_effect || {}).merge(hash)
+      def send_pass_mail(
+        sender, rcpt,
+        original_subject, original_date,
+        attachment_filenames, password
+      )
+        mail = Mail.new
+        mail.from = sender
+        mail.to = rcpt
+        mail.subject = "【DECO Mail Filter】添付ファイル自動暗号化通知"
+        mail.body = <<~EOS
+以下のメールの添付ファイルを暗号化して送信しました。
+
+---
+Date: #{original_date}
+From: #{sender}
+To: #{rcpt}
+Subject: #{original_subject}
+添付ファイル名: #{attachment_filenames.join ', '}
+---
+
+暗号化添付ファイル名: #{ENCRYPTED_ATTACHMENT_FILENAME}
+展開パスワード: #{password}
+
+        #{@attachments_encryption_additional_text}
+        EOS
+        mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
+        # mail.deliver # TODO: Enable
       end
 
       def send_unsupported_encoding_mechanism_mail sender
@@ -250,7 +260,7 @@ module DecoMailFilter
         mail.subject '【DECO Mail Filter】添付ファイル自動暗号化エラー'
         mail.body '対応していない添付ファイルのエンコード形式です。添付ファイルはBase64かQuoted-Printable形式でエンコードしてください。'
         mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
-        mail.deliver
+        # mail.deliver # TODO: Enable
       end
   end
 end
