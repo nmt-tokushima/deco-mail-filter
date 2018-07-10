@@ -23,6 +23,20 @@ module DecoMailFilter
       :attachments_encryption_disable_domain_tos
     )
 
+    attr_accessor :smtp_host, :smtp_port, :rcpts
+
+    def smtp_host
+      @smtp_host ||= '127.0.0.1'
+    end
+
+    def smtp_port
+      @smtp_port ||= '25'
+    end
+
+    def rcpts
+      @rcpts ||= []
+    end
+
     def initialize(
       bcc_conversion: true,
       bcc_dummy_to: DEFAULT_DUMMY_TO,
@@ -41,6 +55,8 @@ module DecoMailFilter
       @bcc_dummy_to = bcc_dummy_to
       @bcc_conversion_disable_domains = bcc_conversion_disable_domains
       @attachments_encryption = attachments_encryption
+      @attachments_encryption_additional_text = attachments_encryption_additional_text
+      @attachments_encryption_password_notification = attachments_encryption_password_notification
     end
 
     def self.create_from_json_url url

@@ -54,4 +54,33 @@ class DecoMailFilter::Utils
   def self.generate_password
     Passgen::generate symbols: true
   end
+
+  def self.send_pass_mail(
+    sender, rcpt, subject, original_subject, original_date,
+    attachment_filenames, password, additional_text,
+    smtp_host, smtp_port
+  )
+    mail = Mail.new
+    mail.from = sender
+    mail.to = rcpt
+    mail.subject = subject
+    mail.body = <<~EOS
+以下のメールの添付ファイルを暗号化して送信しました。
+
+---
+Date: #{original_date}
+From: #{sender}
+To: #{rcpt}
+Subject: #{original_subject}
+添付ファイル名: #{attachment_filenames.join ', '}
+---
+
+暗号化添付ファイル名: #{encrypted_attachment_filename}
+展開パスワード: #{password}
+
+    #{additional_text}
+    EOS
+    mail.delivery_method(:smtp, address: smtp_host, port: smtp_port)
+    mail.deliver
+  end
 end

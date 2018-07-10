@@ -15,6 +15,11 @@ module DecoMailFilter
       @bcc_dummy_to = config.bcc_dummy_to
       @bcc_conversion_disable_domains = config.bcc_conversion_disable_domains
       @attachments_encryption = config.attachments_encryption
+      @attachments_encryption_additional_text = config.attachments_encryption_additional_text
+      @attachments_encryption_password_notification = config.attachments_encryption_password_notification
+      @smtp_host = config.smtp_host
+      @smtp_port = config.smtp_port
+
       @work_side_effect = nil
     end
 
@@ -109,7 +114,14 @@ module DecoMailFilter
         zippath = File.join tmp_zip_dir, 'attachments.zip'
         password = Utils.generate_password
         Utils.make_zip_file tmp_attachments, zippath, password
-        work_side_effect_merge({ attachments_encryption: true, password: password })
+        work_side_effect_merge({
+          sender: mail.from,
+          attachments_encryption: true,
+          subject: (mail.subject != nil ? mail.subject : 'n/a'),
+          date: (mail.header['Date'] != nil ? mail.header['Date'].to_s : 'n/a'),
+          attachment_filenames: attachment_filenames(mail),
+          password: password,
+        })
         logger.info("password: #{password}") # TODO: Remove later
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
@@ -172,6 +184,41 @@ module DecoMailFilter
       end
       logger.info("end")
       header + body
+    end
+
+    def work_before_output
+      return if @work_side_effect.nil?
+
+      if @work_side_effect[:attachments_encryption]
+        Utils.send_pass_mail(
+          @work_side_effect[:sender],
+          @work_side_effect[:sender],
+          "【DECO Mail Filter】添付ファイル自動暗号化通知",
+          @work_side_effect[:subject],
+          @work_side_effect[:date],
+          @work_side_effect[:attachment_filenames],
+          @work_side_effect[:password],
+          @attachments_encryption_additional_text,
+          smtp_host,
+          smtp_port
+        )
+        if @attachments_encryption_password_notification
+          @rcpts.each do |r|
+            Utils.send_pass_mail(
+              @work_side_effect[:sender],
+              r,
+              "【DECO Mail Filter】添付ファイル自動暗号化通知",
+              @work_side_effect[:subject],
+              @work_side_effect[:date],
+              @work_side_effect[:attachment_filenames],
+              @work_side_effect[:password],
+              @attachments_encryption_additional_text,
+              smtp_host,
+              smtp_port
+            )
+          end
+        end
+      end
     end
 
     private
