@@ -107,3 +107,10 @@ require_relative '../src/utils'
 def read_mail(filename)
   File.read(File.join(__dir__, 'mail-mocks', filename))
 end
+
+# ref. https://relishapp.com/rspec/rspec-core/v/3-7/docs/hooks/before-and-after-hooks#define-%60before%60-and-%60after%60-blocks-in-configuration
+RSpec.configure do |config|
+  config.before do
+    allow_any_instance_of(Mail::Message).to receive(:deliver)
+  end
+end

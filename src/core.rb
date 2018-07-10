@@ -250,7 +250,7 @@ Subject: #{original_subject}
         #{@attachments_encryption_additional_text}
         EOS
         mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
-        # mail.deliver # TODO: Enable
+        mail.deliver
       end
 
       def send_unsupported_encoding_mechanism_mail sender
@@ -260,7 +260,7 @@ Subject: #{original_subject}
         mail.subject '【DECO Mail Filter】添付ファイル自動暗号化エラー'
         mail.body '対応していない添付ファイルのエンコード形式です。添付ファイルはBase64かQuoted-Printable形式でエンコードしてください。'
         mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
-        # mail.deliver # TODO: Enable
+        mail.deliver
       end
   end
 end
