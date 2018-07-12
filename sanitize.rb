@@ -29,6 +29,6 @@ filter.logger = Syslog
 
 begin
   print filter.work $stdin.read
-rescue UnsupportedEncodingMechanism => e
+rescue DecoMailFilter::UnsupportedEncodingMechanism => e
   exit 1 # TODO: ここで異常終了するとsmtpprox_for_decomfは正しく動ける？調べる
 end
