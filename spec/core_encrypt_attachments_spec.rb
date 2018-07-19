@@ -81,6 +81,11 @@ RSpec.describe "DecoMailFilter::Core" do
         end
       end
 
+      context "Japanese filename" do
+        let(:filename) { 'mail-ja-filename.txt' } # 20180711160400-B7FD4C48-84D8-11E8-866D-7D95ED88C3E1
+        it { is_expected.to eq true }
+      end
+
       context "multipart/alternative" do
         let(:filename) { 'mail-html-1-attachment.txt' }
         it { is_expected.to eq true }

@@ -46,6 +46,7 @@ module DecoMailFilter
       return unless have_attachment? mail
       mail.part[1..-1].each do |e|
         filename = e.filename.tosjis
+        filename = e.filename.toutf8
         case e.header['content-type'].first.type
         when 'text'
           File.open(File.join(dir, filename), 'w') do |f|
@@ -238,10 +239,10 @@ module DecoMailFilter
 
 ---
 Date: #{original_date}
-From: #{sender}
-To: #{rcpt}
-Subject: #{original_subject}
-添付ファイル名: #{attachment_filenames.join ', '}
+From: #{sender.to_s.toutf8}
+To: #{rcpt.to_s.toutf8}
+Subject: #{original_subject.toutf8}
+添付ファイル名: #{attachment_filenames.map(&:toutf8).join ', '}
 ---
 
 暗号化添付ファイル名: #{ENCRYPTED_ATTACHMENT_FILENAME}
@@ -249,6 +250,7 @@ Subject: #{original_subject}
 
         #{@attachments_encryption_additional_text}
         EOS
+        mail.charset = 'utf-8'
         mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
         mail.deliver
       end
@@ -259,6 +261,7 @@ Subject: #{original_subject}
         mail.to sender
         mail.subject '【DECO Mail Filter】添付ファイル自動暗号化エラー'
         mail.body '対応していない添付ファイルのエンコード形式です。添付ファイルはBase64かQuoted-Printable形式でエンコードしてください。'
+        mail.charset = 'utf-8'
         mail.delivery_method(:smtp, address: @smtp_host, port: @smtp_port)
         mail.deliver
       end
