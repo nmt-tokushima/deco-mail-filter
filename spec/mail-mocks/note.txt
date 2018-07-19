@@ -1,3 +1,38 @@
+filename規則
+
+X-Y-Z
+
+クライアントの種類
+X
+1. Thunderbird (Linux)
+2. Outlook (Windows)
+3. Joruri Mail
+
+メール本文の種類
+Y
+1. plain textで "test" という文字列のみ
+2. rich textで太字にした "bold" という文字列のみ
+
+添付ファイルの種類
+Z
+1. なし
+2. test.zip
+3. test.txt
+4. test.html
+5. test.txt, test.zip
+6. テスト.zip (SJIS) (※欠番)
+7. テスト.txt (SJIS) (※欠番)
+8. テスト.html (SJIS) (※欠番)
+9. テスト.txt, テスト.zip (SJIS) (※欠番)
+10. テスト.zip (ISO-2022-JP)
+11. テスト.txt (ISO-2022-JP)
+12. テスト.html  (ISO-2022-JP)
+13. テスト.txt, テスト.zip  (ISO-2022-JP)
+
+1-1-6.txtだけ例外(test-sjis.txtを持っている)
+
+別名ファイルメモ
+
 mail-1-attachment.txt == 1-1-2.txt
 mail-2-attachment.txt == 1-1-5.txt
 mail-sjis-attachment.txt == 1-1-6.txt
