@@ -139,7 +139,9 @@ module DecoMailFilter
           attachment_filenames(mail), password
         )
 
-        logger.info("password: #{password}") # TODO: Remove later
+        logger.info("password: #{password.gsub('%', '%%')}") # TODO: Remove later
+        # NOTE: % -> %% for avoiding "malformed format string" error
+        # ref. https://stackoverflow.com/questions/13432122/string-interpolation-with-actual-in-string
         new_mail = Mail.new
         # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
         if mail.part.first.multipart?
