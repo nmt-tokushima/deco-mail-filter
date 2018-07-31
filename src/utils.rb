@@ -51,7 +51,8 @@ class DecoMailFilter::Utils
     end
   end
 
-  def self.generate_password
-    Passgen::generate symbols: true
+  def self.generate_password length: 10
+    Passgen::generate length: length, symbols: true
+    # NOTE: Include symbols always (TODO?)
   end
 end

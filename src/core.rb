@@ -18,6 +18,7 @@ module DecoMailFilter
       @bcc_dummy_to = config.bcc_dummy_to
       @bcc_conversion_disable_domains = config.bcc_conversion_disable_domains
       @attachments_encryption = config.attachments_encryption
+      @attachments_encryption_password_length = config.attachments_encryption_password_length
       @attachments_encryption_additional_text = config.attachments_encryption_additional_text
       @attachments_encryption_password_notification = config.attachments_encryption_password_notification
       @smtp_host = config.smtp_host
@@ -128,7 +129,7 @@ module DecoMailFilter
         end
         tmp_zip_dir = Dir.mktmpdir
         zippath = File.join tmp_zip_dir, 'attachments.zip'
-        password = Utils.generate_password
+        password = Utils.generate_password length: @attachments_encryption_password_length
         Utils.make_zip_file tmp_attachments, zippath, password
 
         original_subject = mail.subject != nil ? mail.subject : 'n/a'
