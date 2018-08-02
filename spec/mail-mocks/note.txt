@@ -28,12 +28,14 @@ Z
 11. テスト.txt (ISO-2022-JP)
 12. テスト.html  (ISO-2022-JP)
 13. テスト.txt, テスト.zip  (ISO-2022-JP)
-
-1-1-6.txtだけ例外(test-sjis.txtを持っている)
+14. test-ja.txt
+15. test-ja-sjis.txt
+16. テスト-ja.txt (ISO-2022-JP)
+17. テスト-ja-sjis.txt (ISO-2022-JP)
 
 別名ファイルメモ
 
 mail-1-attachment.txt == 1-1-2.txt
 mail-2-attachment.txt == 1-1-5.txt
-mail-sjis-attachment.txt == 1-1-6.txt
+mail-sjis-attachment.txt == 1-1-15.txt
 mail-html-1-attachment.txt == 2-2-2.txt

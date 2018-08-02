@@ -3,7 +3,7 @@ Received: from 192.0.2.0 (example.com [203.0.113.0])
 	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
 From: <dummysender@example.com>
 To: <test@example.com>
-Subject: 1-1-6
+Subject: 1-1-15
 Message-ID: <xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx@dummy.example.com>
 Date: Mon, 21 May 2018 12:34:56 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
@@ -21,10 +21,10 @@ test
 
 --------------28BE502284525069E863613F
 Content-Type: text/plain;
- name="test-sjis.txt"
+ name="test-ja-sjis.txt"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment;
- filename="test-sjis.txt"
+ filename="test-ja-sjis.txt"
 
 g2WDWINnDQo=
 

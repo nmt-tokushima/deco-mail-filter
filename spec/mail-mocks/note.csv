@@ -19,6 +19,10 @@ filename,client,part[0],attachments
 2-1-11.txt,Outlook (Windows),plain,テスト.txt (ISO-2022-JP)
 2-1-12.txt,Outlook (Windows),plain,テスト.html (ISO-2022-JP)
 2-1-13.txt,Outlook (Windows),plain,"テスト.txt, テスト.zip (ISO-2022-JP)"
+2-1-14.txt,Outlook (Windows),plain,test-ja.txt
+2-1-15.txt,Outlook (Windows),plain,test-ja-sjis.txt
+2-1-16.txt,Outlook (Windows),plain,テスト-ja.txt (ISO-2022-JP)
+2-1-17.txt,Outlook (Windows),plain,テスト-ja-sjis.txt (ISO-2022-JP)
 2-2-1.txt,Outlook (Windows),rich,(none)
 2-2-2.txt,Outlook (Windows),rich,test.zip
 2-2-3.txt,Outlook (Windows),rich,test.txt
@@ -28,6 +32,10 @@ filename,client,part[0],attachments
 2-2-11.txt,Outlook (Windows),rich,テスト.txt (ISO-2022-JP)
 2-2-12.txt,Outlook (Windows),rich,テスト.html (ISO-2022-JP)
 2-2-13.txt,Outlook (Windows),rich,"テスト.txt, テスト.zip (ISO-2022-JP)"
+2-2-14.txt,Outlook (Windows),rich,test-ja.txt
+2-2-15.txt,Outlook (Windows),rich,test-ja-sjis.txt
+2-2-16.txt,Outlook (Windows),rich,テスト-ja.txt (ISO-2022-JP)
+2-2-17.txt,Outlook (Windows),rich,テスト-ja-sjis.txt (ISO-2022-JP)
 3-1-1.txt,Joruri Mail,plain,(none)
 3-1-2.txt,Joruri Mail,plain,test.zip
 3-1-3.txt,Joruri Mail,plain,test.txt
@@ -37,6 +45,10 @@ filename,client,part[0],attachments
 3-1-11.txt,Joruri Mail,plain,テスト.txt (ISO-2022-JP)
 3-1-12.txt,Joruri Mail,plain,テスト.html (ISO-2022-JP)
 3-1-13.txt,Joruri Mail,plain,"テスト.txt, テスト.zip (ISO-2022-JP)"
+3-1-14.txt,Joruri Mail,plain,test-ja.txt
+3-1-15.txt,Joruri Mail,plain,test-ja-sjis.txt
+3-1-16.txt,Joruri Mail,plain,テスト-ja.txt (ISO-2022-JP)
+3-1-17.txt,Joruri Mail,plain,テスト-ja-sjis.txt (ISO-2022-JP)
 3-2-1.txt,Joruri Mail,rich,(none)
 3-2-2.txt,Joruri Mail,rich,test.zip
 3-2-3.txt,Joruri Mail,rich,test.txt
@@ -46,3 +58,7 @@ filename,client,part[0],attachments
 3-2-11.txt,Joruri Mail,rich,テスト.txt (ISO-2022-JP)
 3-2-12.txt,Joruri Mail,rich,テスト.html (ISO-2022-JP)
 3-2-13.txt,Joruri Mail,rich,"テスト.txt, テスト.zip (ISO-2022-JP)"
+3-2-14.txt,Joruri Mail,rich,test-ja.txt
+3-2-15.txt,Joruri Mail,rich,test-ja-sjis.txt
+3-2-16.txt,Joruri Mail,rich,テスト-ja.txt (ISO-2022-JP)
+3-2-17.txt,Joruri Mail,rich,テスト-ja-sjis.txt (ISO-2022-JP)

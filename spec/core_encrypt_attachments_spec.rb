@@ -74,8 +74,8 @@ RSpec.describe "DecoMailFilter::Core" do
           end
 
           it do
-            md5_before = Digest::MD5.file(File.join(__dir__, 'test-sjis.txt'))
-            md5_after  = Digest::MD5.file(File.join(@extract_tmp_dir, 'test-sjis.txt'))
+            md5_before = Digest::MD5.file(File.join(__dir__, 'test-ja-sjis.txt'))
+            md5_after  = Digest::MD5.file(File.join(@extract_tmp_dir, 'test-ja-sjis.txt'))
             expect(md5_after).to eq md5_before
           end
         end
