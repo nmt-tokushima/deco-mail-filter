@@ -208,6 +208,8 @@ module DecoMailFilter
         subject, date,
         attachment_filenames, password
       )
+        return # NOTE: Temporarily disable this method
+        # TODO: Remove "return"
         send_pass_mail(
           sender, sender,
           subject, date,
