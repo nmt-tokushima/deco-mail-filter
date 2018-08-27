@@ -56,6 +56,7 @@ module DecoMailFilter
       @bcc_conversion_disable_domains = bcc_conversion_disable_domains
       @attachments_encryption = attachments_encryption
       @attachments_encryption_password_length = attachments_encryption_password_length
+      @attachments_encryption_subject = attachments_encryption_subject
       @attachments_encryption_additional_text = attachments_encryption_additional_text
       @attachments_encryption_password_notification = attachments_encryption_password_notification
     end
