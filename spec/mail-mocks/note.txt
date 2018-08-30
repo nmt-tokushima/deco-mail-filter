@@ -39,3 +39,8 @@ mail-1-attachment.txt == 1-1-2.txt
 mail-2-attachment.txt == 1-1-5.txt
 mail-sjis-attachment.txt == 1-1-15.txt
 mail-html-1-attachment.txt == 2-2-2.txt
+
+特殊ケース
+
+mail-no-alternative-sjis-attachment.txt
+multipart/mixedの最初のパートがmultipart/alternativeではなく本文直書きかつSJIS

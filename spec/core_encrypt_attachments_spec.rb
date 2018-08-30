@@ -129,6 +129,18 @@ RSpec.describe "DecoMailFilter::Core" do
           it { expect(subject.part[1].header['content-transfer-encoding'].first.mechanism).to eq first_part_before.part[1].header['content-transfer-encoding'].first.mechanism }
         end
       end
+
+      describe 'keep encoding' do
+        let(:filename) { 'mail-no-alternative-sjis-attachment.txt' }
+
+        it 'assertion' do
+          expect(mail_before_parsed.part.first.header['content-type'].first.raw =~ /ISO-2022-JP/).to be_truthy
+        end
+
+        it 'contains "iso-2022-jp"' do
+          expect(mail_after_parsed.part.first.header['content-type'].first.raw =~ /iso-2022-jp/).to be_truthy
+        end
+      end
     end
   end
 end

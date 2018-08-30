@@ -166,7 +166,6 @@ module DecoMailFilter
             content_transfer_encoding mail.part.first.header['content-transfer-encoding'].first.mechanism
           end
           new_mail.add_part body_part
-          # TODO: mailの最初のpartがmultipart/alternativeでないケースを用意してテスト追加
         end
         new_mail.add_file filename: ENCRYPTED_ATTACHMENT_FILENAME, content: File.binread(zippath)
         FileUtils.rm_rf tmp_attachments

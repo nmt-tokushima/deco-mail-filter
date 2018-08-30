@@ -1,0 +1,31 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 0025120D5819
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: mail-no-alternative-sjis-attachment
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-Id: <20180823143934.91D5.4A0E7CF9@nmt.co.jp>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="------_5B67EFE900000000CBEF_MULTIPART_MIXED_"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Becky! ver. 2.74 [ja] (Unregistered)
+
+--------_5B67EFE900000000CBEF_MULTIPART_MIXED_
+Content-Type: text/plain; charset="ISO-2022-JP"
+Content-Transfer-Encoding: 7bit
+
+ƒeƒXƒg
+
+--------_5B67EFE900000000CBEF_MULTIPART_MIXED_
+Content-Type: application/x-zip-compressed;
+ name="test.zip"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="test.zip"
+
+UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G/VrtBv1adXgLAAEE
+6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5OwUAAAAFAAAACAAYAAAAAAABAAAApIEA
+AAAAdGVzdC50eHRVVAUAA+0G/Vp1eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBOAAAARwAAAAAA
+
+--------_5B67EFE900000000CBEF_MULTIPART_MIXED_--
