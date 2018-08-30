@@ -144,7 +144,6 @@ module DecoMailFilter
         # NOTE: % -> %% for avoiding "malformed format string" error
         # ref. https://stackoverflow.com/questions/13432122/string-interpolation-with-actual-in-string
         new_mail = Mail.new
-        # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
         if mail.part.first.multipart?
           body_part = Mail::Part.new
           text_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'plain' }
@@ -161,7 +160,13 @@ module DecoMailFilter
           end
           new_mail.add_part body_part
         else
-          new_mail.body = mail.part.first.rawbody
+          body_part = Mail::Part.new do
+            body mail.part.first.rawbody
+            content_type mail.part.first.header['content-type'].first.raw
+            content_transfer_encoding mail.part.first.header['content-transfer-encoding'].first.mechanism
+          end
+          new_mail.add_part body_part
+          # TODO: mailの最初のpartがmultipart/alternativeでないケースを用意してテスト追加
         end
         new_mail.add_file filename: ENCRYPTED_ATTACHMENT_FILENAME, content: File.binread(zippath)
         FileUtils.rm_rf tmp_attachments
