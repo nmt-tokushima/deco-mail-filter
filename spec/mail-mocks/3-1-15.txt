@@ -1,0 +1,34 @@
+Received: from localhost.localdomain.jp (ppp210135149032.b.flets.nmt.ne.jp [210.135.149.32])
+	by deco-mail-filter (Postfix) with ESMTP id 071C02428152
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+Date: Mon, 21 May 2018 12:34:56 +0900
+From: =?ISO-2022-JP?B?GyRCJEckMz5QJGAlKCVVGyhC?= <deco_mf_1@extra.tanuki.ne.jp>
+To: test@example.com
+Message-ID: <5b555dd0ec736_2fa82b1c383bb0a863745@ppp210135149032.b.flets.nmt.ne.jp.mail>
+Subject: 3-1-15
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="--==_mimepart_5b555dd0eb538_2fa82b1c383bb0a863631"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Joruri Mail ver. 2.1.3
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36
+ (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+
+
+----==_mimepart_5b555dd0eb538_2fa82b1c383bb0a863631
+Content-Type: text/plain;
+ charset=ISO-2022-JP
+Content-Transfer-Encoding: 7bit
+
+test
+----==_mimepart_5b555dd0eb538_2fa82b1c383bb0a863631
+Content-Type: text/plain;
+ name=test-ja-sjis.txt
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename=test-ja-sjis.txt
+Content-ID: <5b555dd0ecef6_2fa82b1c383bb0a863896@ppp210135149032.b.flets.nmt.ne.jp.mail>
+
+g2WDWINn
+
+----==_mimepart_5b555dd0eb538_2fa82b1c383bb0a863631--

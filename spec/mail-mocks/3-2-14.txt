@@ -1,0 +1,50 @@
+Received: from localhost.localdomain.jp (ppp210135149032.b.flets.nmt.ne.jp [210.135.149.32])
+	by deco-mail-filter (Postfix) with ESMTP id E06D72428152
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+Date: Mon, 21 May 2018 12:34:56 +0900
+From: =?ISO-2022-JP?B?GyRCJEckMz5QJGAlKCVVGyhC?= <deco_mf_1@extra.tanuki.ne.jp>
+To: test@example.com
+Message-ID: <5b555e26d117d_2fa82b1c383bb0a8647a1@ppp210135149032.b.flets.nmt.ne.jp.mail>
+Subject: 3-2-14
+Mime-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="--==_mimepart_5b555e26cf6c0_2fa82b1c383bb0a8646e"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Joruri Mail ver. 2.1.3
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36
+ (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36
+
+
+----==_mimepart_5b555e26cf6c0_2fa82b1c383bb0a8646e
+Content-Type: text/plain;
+ name=test-ja.txt
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename=test-ja.txt
+Content-ID: <5b555e26d17d7_2fa82b1c383bb0a864826@ppp210135149032.b.flets.nmt.ne.jp.mail>
+
+77u/44OG44K544OI
+
+----==_mimepart_5b555e26cf6c0_2fa82b1c383bb0a8646e
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b555e26cf1a1_2fa82b1c383bb0a86455a"
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b555e26cf1a1_2fa82b1c383bb0a86455a
+Content-Type: text/plain;
+ charset=ISO-2022-JP
+Content-Transfer-Encoding: 7bit
+
+bold
+
+
+----==_mimepart_5b555e26cf1a1_2fa82b1c383bb0a86455a
+Content-Type: text/html;
+ charset=ISO-2022-JP
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><meta http-equiv="content-type" content="text/html; charset=ISO-2022-JP"></head><body><p style="margin: 0px; padding: 0px;"><strong>bold</strong></p></body></html>
+----==_mimepart_5b555e26cf1a1_2fa82b1c383bb0a86455a--
+
+----==_mimepart_5b555e26cf6c0_2fa82b1c383bb0a8646e--

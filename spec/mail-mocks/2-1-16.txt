@@ -1,0 +1,35 @@
+Received: from 192.0.2.0 (example.com [203.0.113.0])
+	by deco-mail-filter (Postfix) with ESMTP id 44DA62428146
+	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
+From: <dummysender@example.com>
+To: <test@example.com>
+Subject: 2-1-16
+Date: Mon, 21 May 2018 12:34:56 +0900
+Message-ID: <006901d4223f$18e6a600$4ab3f200$@deco-project.org>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_006A_01D4228A.88CE7510"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdQiPw8NeB+XFBuvS2m5mEUs2yiMkw==
+Content-Language: ja
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_006A_01D4228A.88CE7510
+Content-Type: text/plain;
+	charset="iso-2022-jp"
+Content-Transfer-Encoding: 7bit
+
+test
+
+------=_NextPart_000_006A_01D4228A.88CE7510
+Content-Type: text/plain;
+	name="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLWphLnR4dA==?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="=?iso-2022-jp?B?GyRCJUYlOSVIGyhCLWphLnR4dA==?="
+
+77u/44OG44K544OI
+
+------=_NextPart_000_006A_01D4228A.88CE7510--
+
