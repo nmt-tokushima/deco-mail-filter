@@ -19,6 +19,7 @@ module DecoMailFilter
       @bcc_conversion_disable_domains = config.bcc_conversion_disable_domains
       @attachments_encryption = config.attachments_encryption
       @attachments_encryption_password_length = config.attachments_encryption_password_length
+      @attachments_encryption_subject = config.attachments_encryption_subject
       @attachments_encryption_additional_text = config.attachments_encryption_additional_text
       @attachments_encryption_password_notification = config.attachments_encryption_password_notification
       @smtp_host = config.smtp_host
@@ -241,7 +242,11 @@ module DecoMailFilter
         mail = Mail.new
         mail.from = sender
         mail.to = rcpt
-        mail.subject = "【DECO Mail Filter】添付ファイル自動暗号化通知"
+        if @attachments_encryption_subject == ''
+          mail.subject = "【DECO Mail Filter】添付ファイル自動暗号化通知"
+        else
+          mail.subject = @attachments_encryption_subject
+        end
         mail.body = <<~EOS
 以下のメールの添付ファイルを暗号化して送信しました。
 
