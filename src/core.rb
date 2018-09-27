@@ -123,7 +123,7 @@ module DecoMailFilter
         tmp_attachments = Dir.mktmpdir
         begin
           write_attachments mail, tmp_attachments
-        rescue UnsupportedEncodingType => e
+        rescue UnsupportedEncodingMechanism => e
           FileUtils.rm_rf tmp_attachments
           send_unsupported_encoding_mechanism_mail mail.from
           raise e
