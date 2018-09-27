@@ -142,5 +142,31 @@ RSpec.describe "DecoMailFilter::Core" do
         end
       end
     end
+
+    describe 'Encoding::CompatibilityError' do
+      let(:mail_before) { read_mail filename }
+      let(:config) { DecoMailFilter::Config.new attachments_encryption: true }
+      let(:filter) { DecoMailFilter::Core.new config: config }
+
+      describe '2-2-16' do
+        let(:filename) { '2-2-16.txt' }
+        it { expect { filter.work mail_before }.not_to raise_error }
+      end
+
+      describe '2-2-17' do
+        let(:filename) { '2-2-17.txt' }
+        it { expect { filter.work mail_before }.not_to raise_error }
+      end
+
+      describe '3-2-16' do
+        let(:filename) { '3-2-16.txt' }
+        it { pending; expect { filter.work mail_before }.not_to raise_error }
+      end
+
+      describe '3-2-17' do
+        let(:filename) { '3-2-17.txt' }
+        it { pending; expect { filter.work mail_before }.not_to raise_error }
+      end
+    end
   end
 end
