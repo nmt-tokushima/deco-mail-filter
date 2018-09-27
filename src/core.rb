@@ -148,14 +148,26 @@ module DecoMailFilter
         if mail.part.first.multipart?
           body_part = Mail::Part.new
           text_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'plain' }
+          text_part_body =
+            if text_part.header['content-type'].first.params['charset'] == 'iso-2022-jp'
+              text_part.body.force_encoding(Encoding::ASCII_8BIT)
+            else
+              text_part.body
+            end
           body_part.text_part = Mail::Part.new do
-            body text_part.body
+            body text_part_body
             content_type text_part.header['content-type'].first.raw
             content_transfer_encoding text_part.header['content-transfer-encoding'].first.mechanism
           end
           html_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'html' }
+          html_part_body =
+            if html_part.header['content-type'].first.params['charset'] == 'iso-2022-jp'
+              html_part.body.force_encoding(Encoding::ASCII_8BIT)
+            else
+              html_part.body
+            end
           body_part.html_part = Mail::Part.new do
-            body html_part.body
+            body html_part_body
             content_type html_part.header['content-type'].first.raw
             content_transfer_encoding html_part.header['content-transfer-encoding'].first.mechanism
           end
