@@ -157,9 +157,9 @@ module DecoMailFilter
         # NOTE: % -> %% for avoiding "malformed format string" error
         # ref. https://stackoverflow.com/questions/13432122/string-interpolation-with-actual-in-string
         new_mail = Mail.new
-        if mail.part.first.multipart?
+        if main_text_part(mail).multipart?
           body_part = Mail::Part.new
-          text_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'plain' }
+          text_part = main_text_part(mail).part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'plain' }
           charset = text_part.header['content-type'].first.params['charset']
           text_part_body =
             if charset == 'iso-2022-jp' || charset == 'ISO-2022-JP'
@@ -172,7 +172,7 @@ module DecoMailFilter
             content_type text_part.header['content-type'].first.raw
             content_transfer_encoding text_part.header['content-transfer-encoding'].first.mechanism
           end
-          html_part = mail.part.first.part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'html' }
+          html_part = main_text_part(mail).part.find { |e| e.header['content-type'].first.type == 'text' && e.header['content-type'].first.subtype == 'html' }
           charset = html_part.header['content-type'].first.params['charset']
           html_part_body =
             if charset == 'iso-2022-jp' || charset == 'ISO-2022-JP'
@@ -187,8 +187,9 @@ module DecoMailFilter
           end
           new_mail.add_part body_part
         else
+          rawbody = main_text_part(mail).rawbody
           body_part = Mail::Part.new do
-            body mail.part.first.rawbody
+            body rawbody
             content_type mail.part.first.header['content-type'].first.raw
             content_transfer_encoding mail.part.first.header['content-transfer-encoding'].first.mechanism
           end
@@ -230,7 +231,6 @@ module DecoMailFilter
         body += mail.rawbody
       else
         body += new_mail.to_s.split("\r\n\r\n")[1..-1].join("\r\n\r\n")
-        # TODO: partの0番目に multipart/alternative があることが前提になっているので修正(※修正の必要が本当にあるかどうかも考える)
       end
       logger.info("end")
       header + body
