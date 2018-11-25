@@ -32,6 +32,146 @@ RSpec.describe "DecoMailFilter::Core" do
     end
   end
 
+  describe "#main_text_parts.size" do
+    let(:filename) { "#{xyz}.txt" }
+    let(:mail) { MailParser::Message.new read_mail filename }
+    subject { DecoMailFilter::Core.new.main_text_parts(mail).size }
+
+    context { let(:xyz) { '1-1-1' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-2' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-3' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-4' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-6' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-1' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-2' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-3' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-4' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-1' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-2' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-3' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-4' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-10' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-11' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-12' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-13' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-14' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-15' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-16' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-17' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-1' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-2' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-3' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-4' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-10' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-11' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-12' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-13' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-14' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-15' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-16' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-17' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-1' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-2' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-3' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-4' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-10' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-11' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-12' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-13' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-14' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-15' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-16' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-17' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-1' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-2' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-3' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-4' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-10' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-11' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-12' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-13' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-14' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-15' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-16' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-17' }; it { is_expected.to eq 1 } }
+  end
+
+  describe "#main_text_part.class" do
+    let(:filename) { "#{xyz}.txt" }
+    let(:mail) { MailParser::Message.new read_mail filename }
+    subject { DecoMailFilter::Core.new.main_text_part(mail).class }
+
+    context { let(:xyz) { '1-1-1' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '1-1-2' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-3' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-4' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-6' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-1' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '1-2-2' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-3' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-4' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-1' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '2-1-2' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-3' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-4' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-10' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-11' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-12' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-13' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-14' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-15' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-16' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-17' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-1' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '2-2-2' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-3' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-4' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-10' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-11' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-12' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-13' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-14' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-15' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-16' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-17' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-1' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '3-1-2' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-3' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-4' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-10' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-11' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-12' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-13' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-14' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-15' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-16' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-17' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-1' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '3-2-2' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-3' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-4' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-10' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-11' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-12' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-13' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-14' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-15' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-16' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-17' }; it { is_expected.to eq MailParser::Message } }
+  end
+
   describe "#attachment_parts" do
     let(:mail) { MailParser::Message.new read_mail filename }
 

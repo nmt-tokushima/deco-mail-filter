@@ -32,6 +32,25 @@ module DecoMailFilter
       @logger ||= NullLogger.new
     end
 
+    def main_text_parts mail
+      if mail.multipart?
+        content_type = mail.header['content-type'].first
+        if content_type.type == 'multipart' && content_type.subtype == 'alternative'
+          [mail.body]
+        else
+          mail.part.select do |e|
+            e.header['content-disposition'].nil? || e.header['content-disposition'].first.type != 'attachment'
+          end
+        end
+      else
+        [mail.body]
+      end
+    end
+
+    def main_text_part mail
+      main_text_parts(mail).first
+    end
+
     def attachment_parts mail
       mail.part.select do |e|
         e.header['content-disposition']&.first&.type == 'attachment'
