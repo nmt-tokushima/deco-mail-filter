@@ -32,21 +32,18 @@ module DecoMailFilter
       @logger ||= NullLogger.new
     end
 
-    def have_attachment? mail
-      if mail.multipart?
-        if mail.header['content-type'].first.tap { |e| break e.type, e.subtype } == ['multipart', 'mixed']
-          true
-        else
-          false
-        end
-      else
-        false
+    def attachment_parts mail
+      mail.part.select do |e|
+        e.header['content-disposition']&.first&.type == 'attachment'
       end
     end
 
+    def have_attachment? mail
+      !attachment_parts(mail).empty?
+    end
+
     def write_attachments mail, dir
-      return unless have_attachment? mail
-      mail.part[1..-1].each do |e|
+      attachment_parts(mail).each do |e|
         filename = e.filename.tosjis
         case e.header['content-type'].first.type
         when 'text'
@@ -72,11 +69,7 @@ module DecoMailFilter
     end
 
     def attachment_filenames mail
-      if have_attachment? mail
-        mail.part[1..-1].map { |e| filename = e.filename.tosjis }
-      else
-        []
-      end
+      attachment_parts(mail).map { |e| e.filename.tosjis }
     end
 
     def work input
