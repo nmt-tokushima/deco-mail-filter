@@ -160,12 +160,12 @@ RSpec.describe "DecoMailFilter::Core" do
 
       describe '3-2-16' do
         let(:filename) { '3-2-16.txt' }
-        it { pending; expect { filter.work mail_before }.not_to raise_error }
+        it { expect { filter.work mail_before }.not_to raise_error }
       end
 
       describe '3-2-17' do
         let(:filename) { '3-2-17.txt' }
-        it { pending; expect { filter.work mail_before }.not_to raise_error }
+        it { expect { filter.work mail_before }.not_to raise_error }
       end
     end
   end
