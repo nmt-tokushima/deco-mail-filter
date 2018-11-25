@@ -32,6 +32,68 @@ RSpec.describe "DecoMailFilter::Core" do
     end
   end
 
+  describe "#attachment_parts" do
+    let(:mail) { MailParser::Message.new read_mail filename }
+
+    context "has no attachment part" do
+      let(:filename) { "#{xy}-1.txt" }
+      subject { DecoMailFilter::Core.new.attachment_parts(mail).empty? }
+
+      context { let(:xy) { '1-1' }; it { is_expected.to eq true } }
+      context { let(:xy) { '1-2' }; it { is_expected.to eq true } }
+      context { let(:xy) { '2-1' }; it { is_expected.to eq true } }
+      context { let(:xy) { '2-2' }; it { is_expected.to eq true } }
+      context { let(:xy) { '3-1' }; it { is_expected.to eq true } }
+      context { let(:xy) { '3-2' }; it { is_expected.to eq true } }
+    end
+
+    context "has 1 attachment part" do
+      let(:filename) { "#{xyz}.txt" }
+      subject { DecoMailFilter::Core.new.attachment_parts(mail) }
+
+      context { let(:xyz) { '1-1-2' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '1-1-5' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '1-1-5' }; it { is_expected.to include mail.part[2] } }
+      context { let(:xyz) { '2-1-2' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '2-1-5' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '2-1-5' }; it { is_expected.to include mail.part[2] } }
+
+      context { let(:xyz) { '3-1-2' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-3' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-4' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-5' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-5' }; it { is_expected.to include mail.part[2] } }
+
+      context { let(:xyz) { '3-1-10' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-11' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-12' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-13' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-13' }; it { is_expected.to include mail.part[2] } }
+      context { let(:xyz) { '3-1-14' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-15' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-16' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-17' }; it { is_expected.to include mail.part[1] } }
+
+      context { let(:xyz) { '3-2-2' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-2-10' }; it { is_expected.to include mail.part[1] } }
+
+      describe 'Special cases for Joruri Mail' do
+        context { let(:xyz) { '3-2-3' }; it { is_expected.to include mail.part[0] } }
+        context { let(:xyz) { '3-2-4' }; it { is_expected.to include mail.part[0] } }
+        context { let(:xyz) { '3-2-5' }; it { is_expected.to include mail.part[0] } } # test.txt
+        context { let(:xyz) { '3-2-5' }; it { is_expected.to include mail.part[2] } } # text.zip
+        context { let(:xyz) { '3-2-11' }; it { is_expected.to include mail.part[0] } } # テスト.txt
+        context { let(:xyz) { '3-2-12' }; it { is_expected.to include mail.part[0] } } # テスト.html
+        context { let(:xyz) { '3-2-13' }; it { is_expected.to include mail.part[0] } } # テスト.txt
+        context { let(:xyz) { '3-2-13' }; it { is_expected.to include mail.part[2] } } # テスト.zip
+        context { let(:xyz) { '3-2-14' }; it { is_expected.to include mail.part[0] } } # test-ja.txt
+        context { let(:xyz) { '3-2-15' }; it { is_expected.to include mail.part[0] } } # test-ja-sjis.txt
+        context { let(:xyz) { '3-2-16' }; it { is_expected.to include mail.part[0] } } # テスト-ja.txt
+        context { let(:xyz) { '3-2-17' }; it { is_expected.to include mail.part[0] } } # テスト-ja-sjis.txt
+      end
+    end
+  end
+
   describe "#have_attachment?" do
     let(:mail) { MailParser::Message.new read_mail filename }
     subject { DecoMailFilter::Core.new.have_attachment? mail }
@@ -80,6 +142,9 @@ RSpec.describe "DecoMailFilter::Core" do
       context { let(:xyz) { '3-1-11' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-12' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-13' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-14' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-15' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-16' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-2' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-3' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-4' }; it { is_expected.to eq true } }
@@ -88,6 +153,9 @@ RSpec.describe "DecoMailFilter::Core" do
       context { let(:xyz) { '3-2-11' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-12' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-13' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-14' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-15' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-16' }; it { is_expected.to eq true } }
     end
   end
 
@@ -101,23 +169,18 @@ RSpec.describe "DecoMailFilter::Core" do
     describe "file existence" do
       subject { File.exist? File.join @dir, filename }
 
-      context "test.zip" do
-        let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" }
-        let(:filename) { "test.zip" }
-        it { is_expected.to eq true }
-      end
-
-      context "test.txt" do
-        let(:mail) { MailParser::Message.new read_mail "2-1-3.txt" }
-        let(:filename) { "test.txt" }
-        it { is_expected.to eq true }
-      end
-
-      context "テスト.zip" do
-        let(:mail) { MailParser::Message.new read_mail "2-1-10.txt" }
-        let(:filename) { "テスト.zip".tosjis }
-        it { is_expected.to eq true }
-      end
+      context { let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-1-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-1-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-2-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-2-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-2-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-1-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-1-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-1-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-2-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-2-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-2-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
     end
 
     describe "file body" do
@@ -127,14 +190,26 @@ RSpec.describe "DecoMailFilter::Core" do
           @orig = Base64.decode64(mail.part[1].rawbody)
         end
 
-        context "test.zip" do
+        context "test.zip 2-1" do
           let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" }
           let(:filename) { "test.zip" }
           it { expect(@body).to eq @orig }
         end
 
-        context "テスト.zip" do
+        context "test.zip 3-1" do
+          let(:mail) { MailParser::Message.new read_mail "3-1-2.txt" }
+          let(:filename) { "test.zip" }
+          it { expect(@body).to eq @orig }
+        end
+
+        context "テスト.zip 2-1" do
           let(:mail) { MailParser::Message.new read_mail "2-1-10.txt" }
+          let(:filename) { "テスト.zip".tosjis }
+          it { expect(@body).to eq @orig }
+        end
+
+        context "テスト.zip 3-1" do
+          let(:mail) { MailParser::Message.new read_mail "3-1-10.txt" }
           let(:filename) { "テスト.zip".tosjis }
           it { expect(@body).to eq @orig }
         end
@@ -146,8 +221,14 @@ RSpec.describe "DecoMailFilter::Core" do
           @orig = mail.part[1].body
         end
 
-        context "test.txt" do
+        context "test.txt 2-1" do
           let(:mail) { MailParser::Message.new read_mail "2-1-3.txt" }
+          let(:filename) { "test.txt" }
+          it { expect(@body).to eq @orig }
+        end
+
+        context "test.txt 3-1" do
+          let(:mail) { MailParser::Message.new read_mail "3-1-3.txt" }
           let(:filename) { "test.txt" }
           it { expect(@body).to eq @orig }
         end
