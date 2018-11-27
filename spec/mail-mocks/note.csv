@@ -4,7 +4,7 @@ filename,client,text,attachments
 1-1-03.txt,Thunderbird (Linux),plain,test.txt
 1-1-04.txt,Thunderbird (Linux),plain,test.html
 1-1-05.txt,Thunderbird (Linux),plain,"test.txt, test.zip"
-1-1-06.txt,Thunderbird (Linux),plain,test-sjis.txt
+1-1-15.txt,Thunderbird (Linux),plain,test-ja-sjis.txt
 1-2-01.txt,Thunderbird (Linux),rich,(none)
 1-2-02.txt,Thunderbird (Linux),rich,test.zip
 1-2-03.txt,Thunderbird (Linux),rich,test.txt
