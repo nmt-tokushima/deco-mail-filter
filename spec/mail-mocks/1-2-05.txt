@@ -1,32 +1,32 @@
 Received: from 192.0.2.0 (example.com [203.0.113.0])
-	by deco-mail-filter (Postfix) with ESMTP id 63CCD227B379
+	by deco-mail-filter (Postfix) with ESMTP id 30274227B379
 	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
 To: test@example.com
 From: dummysender <dummysender@example.com>
-Subject: 1-2-3
-Message-ID: <7d68e6eb-6eaa-b21b-17d0-0a3f0723e46d@example.com>
+Subject: 1-2-05
+Message-ID: <6f56c730-0e94-e532-5801-5fa3e12f3953@example.com>
 Date: Mon, 21 May 2018 12:34:56 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
  Thunderbird/52.7.0
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
- boundary="------------4D6508153B3C59149DC40BB7"
+ boundary="------------8931EDB51441E34B30CFA130"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------4D6508153B3C59149DC40BB7
+--------------8931EDB51441E34B30CFA130
 Content-Type: multipart/alternative;
- boundary="------------F3266A1F167A810475281FD4"
+ boundary="------------26061FA438EA06EE14ABADDE"
 
 
---------------F3266A1F167A810475281FD4
+--------------26061FA438EA06EE14ABADDE
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 *bold*
 
 
---------------F3266A1F167A810475281FD4
+--------------26061FA438EA06EE14ABADDE
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -41,9 +41,9 @@ Content-Transfer-Encoding: 7bit
   </body>
 </html>
 
---------------F3266A1F167A810475281FD4--
+--------------26061FA438EA06EE14ABADDE--
 
---------------4D6508153B3C59149DC40BB7
+--------------8931EDB51441E34B30CFA130
 Content-Type: text/plain; charset=UTF-8;
  name="test.txt"
 Content-Transfer-Encoding: base64
@@ -51,4 +51,15 @@ Content-Disposition: attachment;
  filename="test.txt"
 
 dGVzdAo=
---------------4D6508153B3C59149DC40BB7--
+--------------8931EDB51441E34B30CFA130
+Content-Type: application/zip;
+ name="test.zip"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="test.zip"
+
+UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G/VrtBv1adXgL
+AAEE6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5OwUAAAAFAAAACAAYAAAAAAAB
+AAAApIEAAAAAdGVzdC50eHRVVAUAA+0G/Vp1eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBO
+AAAARwAAAAAA
+--------------8931EDB51441E34B30CFA130--

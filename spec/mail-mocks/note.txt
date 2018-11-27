@@ -15,15 +15,15 @@ Y
 
 添付ファイルの種類
 Z
-1. なし
-2. test.zip
-3. test.txt
-4. test.html
-5. test.txt, test.zip
-6. テスト.zip (SJIS) (※欠番)
-7. テスト.txt (SJIS) (※欠番)
-8. テスト.html (SJIS) (※欠番)
-9. テスト.txt, テスト.zip (SJIS) (※欠番)
+01. なし
+02. test.zip
+03. test.txt
+04. test.html
+05. test.txt, test.zip
+06. テスト.zip (SJIS) (※欠番)
+07. テスト.txt (SJIS) (※欠番)
+08. テスト.html (SJIS) (※欠番)
+09. テスト.txt, テスト.zip (SJIS) (※欠番)
 10. テスト.zip (ISO-2022-JP)
 11. テスト.txt (ISO-2022-JP)
 12. テスト.html  (ISO-2022-JP)
@@ -35,10 +35,10 @@ Z
 
 別名ファイルメモ
 
-mail-1-attachment.txt == 1-1-2.txt
-mail-2-attachment.txt == 1-1-5.txt
+mail-1-attachment.txt == 1-1-02.txt
+mail-2-attachment.txt == 1-1-05.txt
 mail-sjis-attachment.txt == 1-1-15.txt
-mail-html-1-attachment.txt == 2-2-2.txt
+mail-html-1-attachment.txt == 2-2-02.txt
 
 特殊ケース
 

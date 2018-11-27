@@ -37,22 +37,22 @@ RSpec.describe "DecoMailFilter::Core" do
     let(:mail) { MailParser::Message.new read_mail filename }
     subject { DecoMailFilter::Core.new.main_text_parts(mail).size }
 
-    context { let(:xyz) { '1-1-1' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-1-2' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-1-3' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-1-4' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-1-5' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-1-6' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-2-1' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-2-2' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-2-3' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-2-4' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '1-2-5' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-1-1' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-1-2' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-1-3' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-1-4' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-1-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-01' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-02' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-03' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-04' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-05' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-1-06' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-01' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-02' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-03' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-04' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '1-2-05' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-01' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-02' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-03' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-04' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-1-05' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-1-10' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-1-11' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-1-12' }; it { is_expected.to eq 1 } }
@@ -61,11 +61,11 @@ RSpec.describe "DecoMailFilter::Core" do
     context { let(:xyz) { '2-1-15' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-1-16' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-1-17' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-2-1' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-2-2' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-2-3' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-2-4' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '2-2-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-01' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-02' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-03' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-04' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '2-2-05' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-2-10' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-2-11' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-2-12' }; it { is_expected.to eq 1 } }
@@ -74,11 +74,11 @@ RSpec.describe "DecoMailFilter::Core" do
     context { let(:xyz) { '2-2-15' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-2-16' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '2-2-17' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-1-1' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-1-2' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-1-3' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-1-4' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-1-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-01' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-02' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-03' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-04' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-1-05' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-1-10' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-1-11' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-1-12' }; it { is_expected.to eq 1 } }
@@ -87,11 +87,11 @@ RSpec.describe "DecoMailFilter::Core" do
     context { let(:xyz) { '3-1-15' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-1-16' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-1-17' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-2-1' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-2-2' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-2-3' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-2-4' }; it { is_expected.to eq 1 } }
-    context { let(:xyz) { '3-2-5' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-01' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-02' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-03' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-04' }; it { is_expected.to eq 1 } }
+    context { let(:xyz) { '3-2-05' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-2-10' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-2-11' }; it { is_expected.to eq 1 } }
     context { let(:xyz) { '3-2-12' }; it { is_expected.to eq 1 } }
@@ -107,22 +107,22 @@ RSpec.describe "DecoMailFilter::Core" do
     let(:mail) { MailParser::Message.new read_mail filename }
     subject { DecoMailFilter::Core.new.main_text_part(mail).class }
 
-    context { let(:xyz) { '1-1-1' }; it { is_expected.to eq String } }
-    context { let(:xyz) { '1-1-2' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-1-3' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-1-4' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-1-5' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-1-6' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-2-1' }; it { is_expected.to eq String } }
-    context { let(:xyz) { '1-2-2' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-2-3' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-2-4' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '1-2-5' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-1-1' }; it { is_expected.to eq String } }
-    context { let(:xyz) { '2-1-2' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-1-3' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-1-4' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-1-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-01' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '1-1-02' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-03' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-04' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-05' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-1-06' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-01' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '1-2-02' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-03' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-04' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '1-2-05' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-01' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '2-1-02' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-03' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-04' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-1-05' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-1-10' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-1-11' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-1-12' }; it { is_expected.to eq MailParser::Message } }
@@ -131,11 +131,11 @@ RSpec.describe "DecoMailFilter::Core" do
     context { let(:xyz) { '2-1-15' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-1-16' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-1-17' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-2-1' }; it { is_expected.to eq String } }
-    context { let(:xyz) { '2-2-2' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-2-3' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-2-4' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '2-2-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-01' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '2-2-02' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-03' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-04' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '2-2-05' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-2-10' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-2-11' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-2-12' }; it { is_expected.to eq MailParser::Message } }
@@ -144,11 +144,11 @@ RSpec.describe "DecoMailFilter::Core" do
     context { let(:xyz) { '2-2-15' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-2-16' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '2-2-17' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-1-1' }; it { is_expected.to eq String } }
-    context { let(:xyz) { '3-1-2' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-1-3' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-1-4' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-1-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-01' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '3-1-02' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-03' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-04' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-1-05' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-1-10' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-1-11' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-1-12' }; it { is_expected.to eq MailParser::Message } }
@@ -157,11 +157,11 @@ RSpec.describe "DecoMailFilter::Core" do
     context { let(:xyz) { '3-1-15' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-1-16' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-1-17' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-2-1' }; it { is_expected.to eq String } }
-    context { let(:xyz) { '3-2-2' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-2-3' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-2-4' }; it { is_expected.to eq MailParser::Message } }
-    context { let(:xyz) { '3-2-5' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-01' }; it { is_expected.to eq String } }
+    context { let(:xyz) { '3-2-02' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-03' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-04' }; it { is_expected.to eq MailParser::Message } }
+    context { let(:xyz) { '3-2-05' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-2-10' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-2-11' }; it { is_expected.to eq MailParser::Message } }
     context { let(:xyz) { '3-2-12' }; it { is_expected.to eq MailParser::Message } }
@@ -176,7 +176,7 @@ RSpec.describe "DecoMailFilter::Core" do
     let(:mail) { MailParser::Message.new read_mail filename }
 
     context "has no attachment part" do
-      let(:filename) { "#{xy}-1.txt" }
+      let(:filename) { "#{xy}-01.txt" }
       subject { DecoMailFilter::Core.new.attachment_parts(mail).empty? }
 
       context { let(:xy) { '1-1' }; it { is_expected.to eq true } }
@@ -191,18 +191,18 @@ RSpec.describe "DecoMailFilter::Core" do
       let(:filename) { "#{xyz}.txt" }
       subject { DecoMailFilter::Core.new.attachment_parts(mail) }
 
-      context { let(:xyz) { '1-1-2' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '1-1-5' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '1-1-5' }; it { is_expected.to include mail.part[2] } }
-      context { let(:xyz) { '2-1-2' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '2-1-5' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '2-1-5' }; it { is_expected.to include mail.part[2] } }
+      context { let(:xyz) { '1-1-02' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '1-1-05' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '1-1-05' }; it { is_expected.to include mail.part[2] } }
+      context { let(:xyz) { '2-1-02' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '2-1-05' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '2-1-05' }; it { is_expected.to include mail.part[2] } }
 
-      context { let(:xyz) { '3-1-2' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '3-1-3' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '3-1-4' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '3-1-5' }; it { is_expected.to include mail.part[1] } }
-      context { let(:xyz) { '3-1-5' }; it { is_expected.to include mail.part[2] } }
+      context { let(:xyz) { '3-1-02' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-03' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-04' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-05' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-1-05' }; it { is_expected.to include mail.part[2] } }
 
       context { let(:xyz) { '3-1-10' }; it { is_expected.to include mail.part[1] } }
       context { let(:xyz) { '3-1-11' }; it { is_expected.to include mail.part[1] } }
@@ -214,14 +214,14 @@ RSpec.describe "DecoMailFilter::Core" do
       context { let(:xyz) { '3-1-16' }; it { is_expected.to include mail.part[1] } }
       context { let(:xyz) { '3-1-17' }; it { is_expected.to include mail.part[1] } }
 
-      context { let(:xyz) { '3-2-2' }; it { is_expected.to include mail.part[1] } }
+      context { let(:xyz) { '3-2-02' }; it { is_expected.to include mail.part[1] } }
       context { let(:xyz) { '3-2-10' }; it { is_expected.to include mail.part[1] } }
 
       describe 'Special cases for Joruri Mail' do
-        context { let(:xyz) { '3-2-3' }; it { is_expected.to include mail.part[0] } }
-        context { let(:xyz) { '3-2-4' }; it { is_expected.to include mail.part[0] } }
-        context { let(:xyz) { '3-2-5' }; it { is_expected.to include mail.part[0] } } # test.txt
-        context { let(:xyz) { '3-2-5' }; it { is_expected.to include mail.part[2] } } # text.zip
+        context { let(:xyz) { '3-2-03' }; it { is_expected.to include mail.part[0] } }
+        context { let(:xyz) { '3-2-04' }; it { is_expected.to include mail.part[0] } }
+        context { let(:xyz) { '3-2-05' }; it { is_expected.to include mail.part[0] } } # test.txt
+        context { let(:xyz) { '3-2-05' }; it { is_expected.to include mail.part[2] } } # text.zip
         context { let(:xyz) { '3-2-11' }; it { is_expected.to include mail.part[0] } } # テスト.txt
         context { let(:xyz) { '3-2-12' }; it { is_expected.to include mail.part[0] } } # テスト.html
         context { let(:xyz) { '3-2-13' }; it { is_expected.to include mail.part[0] } } # テスト.txt
@@ -238,8 +238,8 @@ RSpec.describe "DecoMailFilter::Core" do
     let(:mail) { MailParser::Message.new read_mail filename }
     subject { DecoMailFilter::Core.new.have_attachment? mail }
 
-    context "X-Y-1" do
-      let(:filename) { "#{xy}-1.txt" }
+    context "X-Y-01" do
+      let(:filename) { "#{xy}-01.txt" }
       context { let(:xy) { '1-1' }; it { is_expected.to eq false } }
       context { let(:xy) { '1-2' }; it { is_expected.to eq false } }
       context { let(:xy) { '2-1' }; it { is_expected.to eq false } }
@@ -248,36 +248,36 @@ RSpec.describe "DecoMailFilter::Core" do
       context { let(:xy) { '3-2' }; it { is_expected.to eq false } }
     end
 
-    context "X-Y-(not 1)" do
+    context "X-Y-(not 01)" do
       let(:filename) { "#{xyz}.txt" }
-      context { let(:xyz) { '1-1-2' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-1-3' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-1-4' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-1-5' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-2-2' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-2-3' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-2-4' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '1-2-5' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-1-2' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-1-3' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-1-4' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-1-5' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-1-02' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-1-03' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-1-04' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-1-05' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-2-02' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-2-03' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-2-04' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '1-2-05' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-1-02' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-1-03' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-1-04' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-1-05' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-1-10' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-1-11' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-1-12' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-1-13' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-2-2' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-2-3' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-2-4' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '2-2-5' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-2-02' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-2-03' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-2-04' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '2-2-05' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-2-10' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-2-11' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-2-12' }; it { is_expected.to eq true } }
       context { let(:xyz) { '2-2-13' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-1-2' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-1-3' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-1-4' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-1-5' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-02' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-03' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-04' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-1-05' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-10' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-11' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-12' }; it { is_expected.to eq true } }
@@ -285,10 +285,10 @@ RSpec.describe "DecoMailFilter::Core" do
       context { let(:xyz) { '3-1-14' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-15' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-1-16' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-2-2' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-2-3' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-2-4' }; it { is_expected.to eq true } }
-      context { let(:xyz) { '3-2-5' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-02' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-03' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-04' }; it { is_expected.to eq true } }
+      context { let(:xyz) { '3-2-05' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-10' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-11' }; it { is_expected.to eq true } }
       context { let(:xyz) { '3-2-12' }; it { is_expected.to eq true } }
@@ -309,17 +309,17 @@ RSpec.describe "DecoMailFilter::Core" do
     describe "file existence" do
       subject { File.exist? File.join @dir, filename }
 
-      context { let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "2-1-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-1-02.txt" }; let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-1-03.txt" }; let(:filename) { "test.txt" };          it { is_expected.to eq true } }
       context { let(:mail) { MailParser::Message.new read_mail "2-1-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "2-2-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "2-2-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-2-02.txt" }; let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "2-2-03.txt" }; let(:filename) { "test.txt" };          it { is_expected.to eq true } }
       context { let(:mail) { MailParser::Message.new read_mail "2-2-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "3-1-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "3-1-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-1-02.txt" }; let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-1-03.txt" }; let(:filename) { "test.txt" };          it { is_expected.to eq true } }
       context { let(:mail) { MailParser::Message.new read_mail "3-1-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "3-2-2.txt" };  let(:filename) { "test.zip" };          it { is_expected.to eq true } }
-      context { let(:mail) { MailParser::Message.new read_mail "3-2-3.txt" };  let(:filename) { "test.txt" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-2-02.txt" }; let(:filename) { "test.zip" };          it { is_expected.to eq true } }
+      context { let(:mail) { MailParser::Message.new read_mail "3-2-03.txt" }; let(:filename) { "test.txt" };          it { is_expected.to eq true } }
       context { let(:mail) { MailParser::Message.new read_mail "3-2-10.txt" }; let(:filename) { "テスト.zip".tosjis }; it { is_expected.to eq true } }
     end
 
@@ -331,13 +331,13 @@ RSpec.describe "DecoMailFilter::Core" do
         end
 
         context "test.zip 2-1" do
-          let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" }
+          let(:mail) { MailParser::Message.new read_mail "2-1-02.txt" }
           let(:filename) { "test.zip" }
           it { expect(@body).to eq @orig }
         end
 
         context "test.zip 3-1" do
-          let(:mail) { MailParser::Message.new read_mail "3-1-2.txt" }
+          let(:mail) { MailParser::Message.new read_mail "3-1-02.txt" }
           let(:filename) { "test.zip" }
           it { expect(@body).to eq @orig }
         end
@@ -362,13 +362,13 @@ RSpec.describe "DecoMailFilter::Core" do
         end
 
         context "test.txt 2-1" do
-          let(:mail) { MailParser::Message.new read_mail "2-1-3.txt" }
+          let(:mail) { MailParser::Message.new read_mail "2-1-03.txt" }
           let(:filename) { "test.txt" }
           it { expect(@body).to eq @orig }
         end
 
         context "test.txt 3-1" do
-          let(:mail) { MailParser::Message.new read_mail "3-1-3.txt" }
+          let(:mail) { MailParser::Message.new read_mail "3-1-03.txt" }
           let(:filename) { "test.txt" }
           it { expect(@body).to eq @orig }
         end
@@ -380,17 +380,17 @@ RSpec.describe "DecoMailFilter::Core" do
     subject { DecoMailFilter::Core.new.attachment_filenames mail }
 
     context "nothing" do
-      let(:mail) { MailParser::Message.new read_mail "2-1-1.txt" }
+      let(:mail) { MailParser::Message.new read_mail "2-1-01.txt" }
       it { is_expected.to eq [] }
     end
 
     context "test.zip" do
-      let(:mail) { MailParser::Message.new read_mail "2-1-2.txt" }
+      let(:mail) { MailParser::Message.new read_mail "2-1-02.txt" }
       it { is_expected.to eq ["test.zip"] }
     end
 
     context "test.txt, test.zip" do
-      let(:mail) { MailParser::Message.new read_mail "2-1-5.txt" }
+      let(:mail) { MailParser::Message.new read_mail "2-1-05.txt" }
       it { is_expected.to eq ["test.txt", "test.zip"] }
     end
 

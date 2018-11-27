@@ -1,33 +1,33 @@
 Received: from 192.0.2.0 (example.com [203.0.113.0])
-	by deco-mail-filter (Postfix) with ESMTP id 5BE49227B375
+	by deco-mail-filter (Postfix) with ESMTP id 115E5227B375
 	for <test@example.com>; Mon, 21 May 2018 12:34:56 +0900 (JST)
 From: <dummysender@example.com>
 To: <test@example.com>
-Subject: 2-2-2
+Subject: 2-2-05
 Date: Mon, 21 May 2018 12:34:56 +0900
-Message-ID: <08b101d3f1a0$476ca440$d645ecc0$@example.com>
+Message-ID: <08d501d3f1a1$1742f890$45c8e9b0$@example.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
-	boundary="----=_NextPart_000_08B2_01D3F1EB.B754C170"
+	boundary="----=_NextPart_000_08D6_01D3F1EC.872B3CD0"
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdPxoBmbioqBhnJFTKyG8NkOz519SA==
+Thread-Index: AdPxoO3p5g3pV6XMT+WJ/ZBc5pIw8g==
 Content-Language: ja
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_08B2_01D3F1EB.B754C170
+------=_NextPart_000_08D6_01D3F1EC.872B3CD0
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_08B3_01D3F1EB.B754C170"
+	boundary="----=_NextPart_001_08D7_01D3F1EC.872B3CD0"
 
 
-------=_NextPart_001_08B3_01D3F1EB.B754C170
+------=_NextPart_001_08D7_01D3F1EC.872B3CD0
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-test 
+  test
 
-------=_NextPart_001_08B3_01D3F1EB.B754C170
+------=_NextPart_001_08D7_01D3F1EC.872B3CD0
 Content-Type: text/html;
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -39,28 +39,41 @@ Content-Transfer-Encoding: quoted-printable
 charset=3Dus-ascii">
 <META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
 16.0.9226.2126">
-<TITLE>2-2-2</TITLE>
+<TITLE>2-2-5</TITLE>
 </HEAD>
 <BODY>
 <!-- Converted from text/rtf format -->
 
-<P DIR=3DLTR ALIGN=3DJUSTIFY><SPAN LANG=3D"en-us"><B></B></SPAN><SPAN =
-LANG=3D"en-us"><B><FONT =
-FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">t</FONT></B></SPAN><SPA=
-N LANG=3D"en-us"><B></B></SPAN><SPAN LANG=3D"en-us"><B><FONT =
-FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">est</FONT></B></SPAN><S=
-PAN LANG=3D"en-us"></SPAN><SPAN LANG=3D"en-us"><B></B></SPAN><B><SPAN =
+<P DIR=3DLTR ALIGN=3DJUSTIFY><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"><B></B></SPAN><B><SPAN LANG=3D"en-us"><FONT FACE=3D"MS =
+PGothic" SIZE=3D2 COLOR=3D"#000000"> &lt;&lt;...&gt;&gt; =
+</FONT></SPAN></B><SPAN LANG=3D"en-us"><B></B></SPAN><SPAN =
+LANG=3D"en-us"><B></B></SPAN><B><SPAN LANG=3D"en-us"></SPAN></B><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"en-us"><B></B></SPAN><B><SPAN =
 LANG=3D"en-us"><FONT FACE=3D"MS PGothic" SIZE=3D2 COLOR=3D"#000000"> =
 &lt;&lt;...&gt;&gt; </FONT></SPAN></B><SPAN =
 LANG=3D"en-us"><B></B></SPAN><SPAN LANG=3D"en-us"><B></B></SPAN><B><SPAN =
 LANG=3D"en-us"></SPAN></B><SPAN LANG=3D"en-us"><B></B></SPAN><SPAN =
-LANG=3D"en-us"><B></B></SPAN></P>
+LANG=3D"en-us"><B><FONT =
+FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">t</FONT></B></SPAN><SPA=
+N LANG=3D"en-us"><B></B></SPAN><SPAN LANG=3D"en-us"><B><FONT =
+FACE=3D"&#28216;&#12468;&#12471;&#12483;&#12463;">est</FONT></B></SPAN><S=
+PAN LANG=3D"en-us"><B></B></SPAN><SPAN LANG=3D"en-us"><B></B></SPAN></P>
 
 </BODY>
 </HTML>
-------=_NextPart_001_08B3_01D3F1EB.B754C170--
+------=_NextPart_001_08D7_01D3F1EC.872B3CD0--
 
-------=_NextPart_000_08B2_01D3F1EB.B754C170
+------=_NextPart_000_08D6_01D3F1EC.872B3CD0
+Content-Type: text/plain;
+	name="test.txt"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="test.txt"
+
+test=0A=
+
+------=_NextPart_000_08D6_01D3F1EC.872B3CD0
 Content-Type: application/x-zip-compressed;
 	name="test.zip"
 Content-Transfer-Encoding: base64
@@ -71,5 +84,5 @@ UEsDBAoAAAAAAKFssUzGNbk7BQAAAAUAAAAIABwAdGVzdC50eHRVVAkAA+0G/VrtBv1adXgLAAEE
 6AMAAATmAwAAdGVzdApQSwECHgMKAAAAAAChbLFMxjW5OwUAAAAFAAAACAAYAAAAAAABAAAApIEA
 AAAAdGVzdC50eHRVVAUAA+0G/Vp1eAsAAQToAwAABOYDAABQSwUGAAAAAAEAAQBOAAAARwAAAAAA
 
-------=_NextPart_000_08B2_01D3F1EB.B754C170--
+------=_NextPart_000_08D6_01D3F1EC.872B3CD0--
 
